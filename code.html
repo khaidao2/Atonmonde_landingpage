@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Atomonde - Dược Mỹ Phẩm Cao Cấp Cho Cả Gia Đình</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        @layer base {
+            :root {
+                --primary: #0ABAB5;
+                --secondary: #56DFCF;
+                --pink: #FFEDF3;
+                --dark: #1A1C23;
+                --cream: #FDFBFA;
+                --mint: #E8F8F7;
+            }
+            body {
+                @apply font-['Be_Vietnam_Pro'] bg-[var(--cream)] text-[var(--dark)] antialiased;
+            }
+            h1, h2, h3, .font-serif {
+                @apply font-['Playfair_Display'] font-semibold;
+            }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .teal-gradient {
+            background: linear-gradient(135deg, #0ABAB5 0%, #089d98 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0ABAB5 0%, #56DFCF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .soft-shadow {
+            box-shadow: 0 20px 50px -12px rgba(10, 186, 181, 0.12);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100">
+<nav class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-12 bg-[var(--primary)] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#0ABAB5]/20">
+<span class="material-symbols-outlined text-3xl">eco</span>
+</div>
+<span class="text-2xl font-black tracking-tighter text-[var(--dark)]">Atomonde</span>
+</div>
+<div class="hidden lg:flex items-center gap-12">
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#hero">Trang chủ</a>
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#features">Đặc tính</a>
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#tech">Công nghệ</a>
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#pricing">Gói giải pháp</a>
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#faq">Hỗ trợ</a>
+</div>
+<button class="bg-[var(--primary)] text-white px-8 py-4 rounded-full font-extrabold text-sm shadow-xl shadow-[#0ABAB5]/30 hover:shadow-[#0ABAB5]/50 transition-all active:scale-95">
+            Nhận Tư Vấn
+        </button>
+</nav>
+</header>
+<main>
+<section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden" id="hero">
+<div class="absolute top-0 right-0 w-[45%] h-[90%] bg-[var(--pink)]/40 -z-10 rounded-bl-[160px]"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative z-10">
+<div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm mb-10 border border-[var(--pink)]">
+<span class="material-symbols-outlined text-[var(--primary)] text-sm">verified</span>
+<span class="text-[11px] font-black text-[var(--dark)] uppercase tracking-[0.2em]">Dược mỹ phẩm cao cấp Hàn Quốc</span>
+</div>
+<h1 class="text-6xl lg:text-[100px] leading-[0.9] mb-10 text-[var(--dark)]">
+                    Làn Da <span class="italic font-normal text-[var(--primary)]">Khỏe Mạnh</span><br/>Cho Gia Đình
+                </h1>
+<p class="text-lg text-gray-500 mb-12 max-w-lg leading-relaxed font-light">
+                    Đánh thức vẻ đẹp tự nhiên bằng công nghệ khóa ẩm <span class="font-bold text-[var(--dark)]">Aquaporin</span> tiên tiến. An toàn tuyệt đối cho trẻ sơ sinh và phục hồi chuyên sâu cho người lớn.
+                </p>
+<div class="flex flex-wrap gap-6 mb-16">
+<button class="bg-[var(--dark)] text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-[var(--primary)] transition-all shadow-2xl hover:-translate-y-1">
+                        Mua Ngay
+                    </button>
+<button class="flex items-center gap-3 px-10 py-6 rounded-full font-bold text-lg border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-all">
+<span class="material-symbols-outlined">play_circle</span>
+                        Xem Quy Trình
+                    </button>
+</div>
+<div class="grid grid-cols-3 gap-12 border-t border-gray-100 pt-10">
+<div>
+<div class="text-5xl font-black text-[var(--primary)] mb-1">90%</div>
+<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Độ ẩm tăng cao</div>
+</div>
+<div>
+<div class="text-5xl font-black text-[var(--primary)] mb-1">100%</div>
+<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Thuần organic</div>
+</div>
+<div>
+<div class="text-5xl font-black text-[var(--primary)] mb-1">2016</div>
+<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Ra mắt</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="relative aspect-[4/5] rounded-[80px] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] bg-white" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhE7yZOMrSvQgAXUEpw0qx8ZBHSPmkLOu5iQ1kQQfbGNqNxZmgg1pzMlSP1rHo8TaXaS4PChl7jxFjn96RTJkNPPwRxYght5YMyF6TbE9zC_-eVU5Pn0bd5LveQJjj4Gg9Hc9Us1OPELAq74nYshfANEtwcWrsTC2cg4LpoGc4lLR1MT8karNf6_uugDeNCoQZ4QWrMtzlmZfnU-eIGoTJQqFBbip_AEkDuQi2gQkESGr8i0EjVFI-kRjcOp_b6Jw0dzeKjbxjW3M"); background-size: cover; background-position: center;'>
+<div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+</div>
+<div class="absolute -top-12 -right-12 size-56 rounded-[50px] border-[12px] border-white shadow-2xl overflow-hidden" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWumbPLZJodElD9OJAyNGtDbPailO2F5--5JNW98de0GuNIDdBkzr8K-RyI7I3SQay1VEbxvd7el3dspvtOPg-WaHZYMyoHfy2XMNiULcWvjKCwC_Ypb1ftOoRwDK5q2wMprMGEWZI2AnqJYh9S8ARJ91lNf8zDSAyRM3asQ2AJiiTkD78yNEkM-q5wvf9y74C4SwxUf-wlzloEcLU2pYe92YgmZgdNVZ9rXt39pAVRpLC4p0giU4423MNcMEJXcOU6iiOhYnxiEI"); background-size: cover; background-position: center;'></div>
+<div class="absolute -bottom-12 -left-12 glass-card p-10 rounded-[50px] shadow-2xl max-w-[320px]">
+<div class="flex gap-1 mb-5">
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
+</div>
+<p class="text-[15px] italic text-gray-700 leading-relaxed">"Làn da bé nhà mình mềm mượt hẳn chỉ sau 3 ngày sử dụng. Cảm ơn Atomonde!"</p>
+<p class="text-xs font-black mt-5 text-[var(--dark)] uppercase tracking-wider">— Chị Ngọc, Hà Nội</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white" id="features">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
+<div class="max-w-2xl">
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">TẠI SAO CHỌN CHÚNG TÔI?</span>
+<h2 class="text-5xl lg:text-7xl leading-tight">Sự Giao Thoa Giữa <br/><span class="text-gradient">Thiên Nhiên &amp; Khoa Học</span></h2>
+</div>
+<p class="text-gray-500 max-w-sm mb-2 text-lg font-light leading-relaxed">Chúng tôi mang đến giải pháp bảo vệ sức khỏe làn da toàn diện cho cả gia đình bằng sự tử tế và chuyên nghiệp.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
+<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--pink)]/10 border-pink-100/50">
+<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[var(--primary)] text-4xl">child_care</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold mb-4">Siêu Dịu Nhẹ</h3>
+<p class="text-gray-500 leading-relaxed font-light">Độ pH 5.5 cân bằng hoàn hảo, không gây cay mắt và an toàn cho trẻ sơ sinh từ 0 ngày tuổi.</p>
+</div>
+</div>
+<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--secondary)]/10 border-teal-100/50">
+<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[var(--primary)] text-4xl">water_drop</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold mb-4">Khóa Ẩm 24H</h3>
+<p class="text-gray-500 leading-relaxed font-light">Cung cấp độ ẩm tức thì và duy trì hàng rào bảo vệ da suốt cả ngày dài dưới mọi thời tiết.</p>
+</div>
+</div>
+<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--primary)]/5 border-teal-50/50">
+<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[var(--primary)] text-4xl">eco</span>
+</div>
+<div>
+<h3 class="text-3xl font-bold mb-4">100% Hữu Cơ</h3>
+<p class="text-gray-500 leading-relaxed font-light">Chiết xuất thảo mộc quý hiếm, không chứa corticoid, paraben hay hương liệu tổng hợp.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center bg-[var(--mint)] rounded-[80px] p-10 lg:p-24">
+<div class="relative">
+<div class="aspect-square rounded-[60px] overflow-hidden shadow-2xl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOWTY9jUt3ZiaCepxBUGxJ7jwC2PzEVSfYkMawXaUUVJRbEcgfXnJHDKzEBb-x8pqKf9EYRydZBFVDiArVyQDR9DlBRU9miFRw-aYJZu--k2yYw4-C6YcLYqdykrBwtfO618EsEjizIC64a_4Z-DCK2EMKTXaAI__pzmcW9V_-dyNE31SCd8_8ZQJpR4DHu2Eo_QyToxIsGi5pYVWc4BGCBJKmmIcFH2QSBi5YYKj-dos73yWZMuAsxXrn-8NJHkxDTB2LZeGOz_E"); background-size: cover; background-position: center;'></div>
+<div class="absolute -bottom-10 -right-10 teal-gradient text-white p-12 rounded-[50px] shadow-2xl">
+<span class="text-7xl font-black block mb-2 leading-none">1M+</span>
+<span class="text-xs font-black uppercase tracking-[0.3em] opacity-80">Gia đình tin dùng</span>
+</div>
+</div>
+<div class="space-y-12">
+<h2 class="text-5xl leading-tight">Lợi ích vượt trội cho làn da nhạy cảm</h2>
+<div class="grid gap-10">
+<div class="flex gap-8 items-start">
+<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
+<span class="material-symbols-outlined text-2xl">done_all</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-3">Phục hồi màng Lipid</h4>
+<p class="text-gray-500 leading-relaxed font-light">Tăng cường hàng rào bảo vệ da tự nhiên, giúp da chống lại các tác nhân gây hại từ môi trường.</p>
+</div>
+</div>
+<div class="flex gap-8 items-start">
+<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
+<span class="material-symbols-outlined text-2xl">done_all</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-3">Làm dịu tức thì</h4>
+<p class="text-gray-500 leading-relaxed font-light">Giảm tình trạng mẩn đỏ, ngứa ngáy do chàm (eczema) hoặc kích ứng do thay đổi thời tiết.</p>
+</div>
+</div>
+<div class="flex gap-8 items-start">
+<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
+<span class="material-symbols-outlined text-2xl">done_all</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-3">Thẩm thấu Nano</h4>
+<p class="text-gray-500 leading-relaxed font-light">Kết cấu mỏng nhẹ, không gây nhờn rít, phù hợp hoàn hảo cho khí hậu nóng ẩm tại Việt Nam.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-[var(--dark)] text-white rounded-[60px] lg:rounded-[120px] mx-6 my-12" id="tech">
+<div class="max-w-7xl mx-auto px-10">
+<div class="text-center mb-24">
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">KHOA HỌC TIÊN PHONG</span>
+<h2 class="text-5xl lg:text-7xl mb-8">Đỉnh Cao Công Nghệ Hàn Quốc</h2>
+<p class="text-gray-400 max-w-2xl mx-auto text-lg font-light">Mỗi sản phẩm là một công trình nghiên cứu chuyên sâu từ các phòng Lab hàng đầu Seoul.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
+<div class="flex justify-between items-start mb-12">
+<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">01</span>
+<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-[var(--primary)]">science</span>
+</div>
+</div>
+<h3 class="text-4xl font-bold mb-6">Aquaporin Booster</h3>
+<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Kích hoạt các "kênh dẫn nước" tự nhiên trong tế bào, giúp da tự cấp ẩm từ bên trong thay vì chỉ bôi lớp ngoài.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Tăng 400% khả năng giữ nước
+                        </li>
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Hiệu quả dưỡng ẩm kéo dài 48h
+                        </li>
+</ul>
+</div>
+<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
+<div class="flex justify-between items-start mb-12">
+<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">02</span>
+<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-[var(--primary)]">biotech</span>
+</div>
+</div>
+<h3 class="text-4xl font-bold mb-6">Nano-Barrier Pro</h3>
+<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Cấu trúc Ceramide siêu nhỏ len lỏi qua từng kẽ hở lớp sừng, tái tạo hàng rào bảo vệ vững chắc cho da nhạy cảm.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Bảo vệ da khỏi bụi mịn PM2.5
+                        </li>
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Phục hồi da tổn thương cấp tốc
+                        </li>
+</ul>
+</div>
+<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
+<div class="flex justify-between items-start mb-12">
+<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">03</span>
+<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-[var(--primary)]">fact_check</span>
+</div>
+</div>
+<h3 class="text-4xl font-bold mb-6">Dermatest Excellence</h3>
+<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Đạt chứng chỉ 5 SAO từ Viện Da liễu Đức Dermatest - tiêu chuẩn cao nhất thế giới về an toàn mỹ phẩm.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            0% chất gây dị ứng và kích ứng
+                        </li>
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Kiểm nghiệm lâm sàng trên 1000 người
+                        </li>
+</ul>
+</div>
+<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
+<div class="flex justify-between items-start mb-12">
+<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">04</span>
+<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-[var(--primary)]">temp_preferences_custom</span>
+</div>
+</div>
+<h3 class="text-4xl font-bold mb-6">Eco-Balance Extraction</h3>
+<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Quy trình chiết xuất lạnh giữ trọn vẹn 100% hoạt tính dưỡng chất từ thảo mộc thiên nhiên quý hiếm.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Giữ nguyên tinh túy tự nhiên tinh khiết
+                        </li>
+<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
+<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
+                            Thân thiện tuyệt đối với môi trường
+                        </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white" id="experts">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-24">
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">ĐỘI NGŨ CHUYÊN GIA</span>
+<h2 class="text-5xl lg:text-6xl mb-8">Cố Vấn Da Liễu Hàng Đầu</h2>
+<p class="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">Sự kết hợp giữa chuyên môn quốc tế và am hiểu đặc tính làn da người Việt.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="text-center group">
+<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
+<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-LKEX0m2j1kn1IUElA-jD3sHQGwJhP7qbScIURRjCC2lEkjdp0y7v3M4Zpy3p6sTb7rdDVsaS0gOJiKhMXOjXe6wKn-lDkLLsR0CTuKleazi_A4V4AJn0KmxIZdc9caB0JQN_TUMi25HwJetbuzt1TG4aK6e1gJdFendTGH8E13AyxCqEjzRf_myZ-2h9zZ_qjDZs-A4X2zEwqK8X7YiZ02QOBUD8V4Oy91RcCKFLkCTwOBiP5O3Q_Je5rCmgmIzXCksX3M5_3W4"); background-size: cover; background-position: center;'></div>
+</div>
+<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Kim So-Hee</h4>
+<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Trưởng phòng Nghiên cứu</p>
+<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Chuyên gia 15 năm trong lĩnh vực phục hồi da cho trẻ em tại Seoul, Hàn Quốc.</p>
+</div>
+<div class="text-center group">
+<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
+<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5f9bc2oTY1sXZxZbuwScAFCaw-9bnSIUonDajeIJMX7LLRUmVK1f-s5NSayC_6IpqMGAEMASO9rmYqdT12-oTzzRHX1i1L2cceMBvykWFnrpC6_B3-gby_VOVVn1TipfKDZQYoqWdMdcKmjlu0vphejaKvX4a1v0dms0aH4uSNoXMyZr8qTchek4cy-RlfWlufERy-ueSv6D03QqcuRQBH16K5BgVZ-vVBUMY8x-hRYtpfIkykQzYeGGHaffOtvIK6kuzdJRhF0I"); background-size: cover; background-position: center;'></div>
+</div>
+<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Minh Anh</h4>
+<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Cố vấn chuyên môn VN</p>
+<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Thạc sĩ Da liễu từ Đại học Y Dược, chuyên sâu về dị ứng thời tiết nhiệt đới.</p>
+</div>
+<div class="text-center group">
+<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
+<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAd2qoz5e1S8r5PGPnhwQZrapkBUF2dK6UIJCEdFS1T7bzVLcy19rWGiWpY-OewJpU2Pzk2XVJSNdRbsWRfTZI7WsUyHjj3Hx6EN3SQCqH_trusEaXmKugidvl7bUOOPdsi1TwaV6L5eqCXf8HZ45xew3z4yHm8MisECFekOluRlyl2JmpzC-xTnpBCKvx6y6cNqL7odLG2CJ8ElbwMsUWgi9oUMJCBVJf-1K-Fhnvkx3j8xt_lrgDCM6vcYl1sSgInD1h8VQRREi8"); background-size: cover; background-position: center;'></div>
+</div>
+<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Ms. Park Ji-Won</h4>
+<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Chuyên gia Công thức</p>
+<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Tác giả của hơn 20 bằng sáng chế về công nghệ khóa ẩm nano sinh học.</p>
+</div>
+<div class="text-center group">
+<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
+<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWYYARlOVXlwv2oJqqmIB8gztTd7UUaDV6t6aghKF6b9mR8q5yE24h7VlW743OPfJ7CUBa1I2F2OfCxb-nebJQAD6S0aTtm3GH9tsPGbJagpUP6DA48hVRaFi3sm6ISdSKNtLeAi7JQEu1eB2PuqHL7bj6Nv2xpQSwPXdjJ2A5wgRxkMxxasGqgI2UfogDeeYPYOlvIJIJAbE91DaCPTOhLoFVFGKVmLFGwJzfaQDvCp7zzVpL9b_Qr0hfwGlMSnlGp3E3PSqWM9k"); background-size: cover; background-position: center;'></div>
+</div>
+<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Thomas Berg</h4>
+<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Giám định Chất lượng</p>
+<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Đại diện từ Dermatest (Đức), đảm bảo các tiêu chuẩn an toàn quốc tế khắt khe nhất.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-[var(--cream)] overflow-hidden">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-5xl lg:text-7xl font-bold text-center mb-24">Câu Chuyện Từ Khách Hàng</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
+<div class="bg-white p-12 rounded-[60px] shadow-sm flex flex-col gap-8 hover:shadow-xl transition-all">
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+</div>
+<p class="text-gray-600 leading-relaxed italic text-lg font-light">"Bé nhà mình bị chàm sữa nặng, dùng bao nhiêu loại không đỡ. Từ khi dùng Atomonde, da con mướt lắm, không còn đỏ ửng mỗi khi trời hanh nữa."</p>
+<div class="flex items-center gap-5 pt-8 border-t border-gray-100 mt-auto">
+<div class="size-14 rounded-full bg-gray-200 border-2 border-white shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmHTRdor5p52n9-g1CfT_rsIRkCYy4NFMJseFTMXzbvFWdRXmRL5uGYEZpkHuuCn6mUoYfef_auwrQmCkKn70K2oPRIdWCeFVf4NvyKfjIBdHD3aT9opog_4OH3T9_uXGCu9FEEVXOF2mOGXx-nSfi7kndEDrP0seHu-eWQosrAoaXZBweO-JjoEON01kNwZxJaI8dMfdIp3cEm7sJ1qB1WJondfIZne1fgljdm6oBnTcj0VvhPQhpuvHJgFxrsMB7bVPxlWOKGeY"); background-size: cover;'></div>
+<div>
+<p class="font-black text-sm text-[var(--dark)]">Chị Phương Thảo</p>
+<p class="text-xs text-gray-400 font-medium">Mẹ bỉm sữa, TP.HCM</p>
+</div>
+</div>
+</div>
+<div class="teal-gradient p-12 rounded-[60px] shadow-2xl text-white flex flex-col gap-8 lg:scale-105 z-10">
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
+</div>
+<p class="leading-relaxed italic text-lg font-light">"Tôi là nam giới nhưng da rất nhạy cảm. Sản phẩm này thấm nhanh, không hề bết dính. Mùi thảo mộc cũng rất dễ chịu, không bị nồng như các loại khác."</p>
+<div class="flex items-center gap-5 pt-8 border-t border-white/20 mt-auto">
+<div class="size-14 rounded-full bg-white/20 border-2 border-white/30 shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZj8OibaUukwBJ8TcIveF5BLlttRUtlCfFxazwv4ZBnQBokq4HTNDB_NNgB3a-20QG924acsn479ToQfCjEZq0i27bKncdY3l_cmXIkTNqEYqezwUdIeSV6VVtHpjc4N2r7yZvoq1F3zb0g_QH8-J_3bKaoLDJ1DzwtMhBMBnozSvw_Ubd_nstyYmVQLw3qw3zKr2s79bRb1QdTkDyXcSRwyJIk1ca1rBo6qnxADPtVe1cMLboiN5yFuf3O925gtAKe6j48oDNonc"); background-size: cover;'></div>
+<div>
+<p class="font-black text-sm">Anh Hoàng Nam</p>
+<p class="text-xs text-white/70 font-medium">Nhân viên văn phòng</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-12 rounded-[60px] shadow-sm flex flex-col gap-8 hover:shadow-xl transition-all">
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
+</div>
+<p class="text-gray-600 leading-relaxed italic text-lg font-light">"Giao hàng nhanh, đóng gói sang chảnh. Sản phẩm cầm rất chắc tay. Chất kem lỏng nhẹ, bôi lên da mát lịm. Cực kỳ hài lòng về chất lượng!"</p>
+<div class="flex items-center gap-5 pt-8 border-t border-gray-100 mt-auto">
+<div class="size-14 rounded-full bg-gray-200 border-2 border-white shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHUNNurYKy0AN5tJ-YNwHtt5Ixgx3nPPmcIK9FUCMUqw9NAwBxtTZeJuWNuS9a1HFGnPDwWwnfZ8PmK5uQqFb3xGxm26USBr_ofrJiuAwaB9a-OMUMvgsoXSV7T1Ld2rVLvCEK1bji_f-VZKpXEuiOYmx6Z-CK7cogNLnL1S_oTNSZ_67AYBgtxiRZ4qubiB1gaeJf9Q5LMeJnjAKB-wDLUvanQwm-ZN3AUhE6S5qnp0zB5vlsUQLEGp_SPzaD-aNQRXFmTnHM6xU"); background-size: cover;'></div>
+<div>
+<p class="font-black text-sm text-[var(--dark)]">Chị Diệu Linh</p>
+<p class="text-xs text-gray-400 font-medium">Nội trợ, Đà Nẵng</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="teal-gradient p-16 lg:p-24 rounded-[80px] text-white shadow-3xl">
+<h2 class="text-5xl font-bold mb-10 italic">Cam Kết Của Chúng Tôi</h2>
+<p class="text-xl opacity-90 mb-12 leading-relaxed font-light">
+                        Atomonde ra đời với sứ mệnh mang đến sự bình yên cho làn da. Chúng tôi cam kết minh bạch 100% thành phần và chỉ sử dụng những gì tốt nhất từ thiên nhiên.
+                    </p>
+<div class="grid grid-cols-2 gap-12">
+<div class="flex flex-col gap-3">
+<span class="text-5xl font-black">0%</span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-black">Parabens &amp; Toxins</span>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-5xl font-black">Safe</span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-black">For Newborns</span>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-5xl font-black">Test</span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-black">Hypoallergenic</span>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-5xl font-black">Pure</span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-black">EWG Green Grade</span>
+</div>
+</div>
+</div>
+<div>
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-10 block">CHỨNG NHẬN QUỐC TẾ</span>
+<h3 class="text-4xl lg:text-5xl font-bold mb-16 leading-tight">Được công nhận bởi các tổ chức uy tín hàng đầu</h3>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-16 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">verified_user</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">FDA Approved</span>
+</div>
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">eco</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">Organic Cert</span>
+</div>
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">factory</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">GMP Standard</span>
+</div>
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">health_and_safety</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">Dermatest 5*</span>
+</div>
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">science</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">Cruelty Free</span>
+</div>
+<div class="flex flex-col items-center gap-5">
+<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-5xl text-[var(--dark)]">spa</span>
+</div>
+<span class="text-[11px] font-black uppercase tracking-widest text-center">EWG Green</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-[var(--cream)]" id="pricing">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-24">
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">LỰA CHỌN TỐI ƯU</span>
+<h2 class="text-5xl lg:text-7xl font-bold mb-8">Giải Pháp Cho Mọi Nhu Cầu</h2>
+<p class="text-gray-500 max-w-xl mx-auto text-lg font-light">Chọn gói sản phẩm phù hợp nhất để tối ưu chi phí và bảo vệ làn da cho cả gia đình.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+<div class="bg-white p-16 rounded-[60px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all flex flex-col group">
+<h3 class="text-3xl font-bold mb-2">Combo Khởi Đầu</h3>
+<p class="text-gray-400 text-sm mb-10 font-medium">Cơ bản cho mẹ hoặc bé</p>
+<div class="mb-12">
+<span class="text-6xl font-black text-[var(--dark)]">499k</span>
+<span class="text-gray-400 font-bold ml-1">/tháng</span>
+</div>
+<ul class="space-y-6 mb-16 flex-grow">
+<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
+                            1 Kem dưỡng ẩm 200ml
+                        </li>
+<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
+                            1 Sữa tắm gội 2in1
+                        </li>
+<li class="flex items-center gap-4 text-[15px] text-gray-300 italic">
+<span class="material-symbols-outlined">cancel</span> 
+                            Miễn phí vận chuyển
+                        </li>
+</ul>
+<button class="w-full py-6 rounded-full border-2 border-[var(--primary)] text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:bg-[var(--primary)] hover:text-white transition-all">
+                        Đăng ký ngay
+                    </button>
+</div>
+<div class="teal-gradient p-16 rounded-[60px] shadow-3xl relative lg:scale-110 z-10 text-white flex flex-col group">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-[var(--pink)] text-[var(--primary)] px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">Bán Chạy Nhất</div>
+<h3 class="text-3xl font-bold mb-2">Gói Gia Đình</h3>
+<p class="opacity-80 text-sm mb-10 font-medium">Bảo vệ toàn diện cho cả nhà</p>
+<div class="mb-12">
+<span class="text-6xl font-black">1.299k</span>
+<span class="opacity-70 font-bold ml-1">/tháng</span>
+</div>
+<ul class="space-y-6 mb-16 flex-grow">
+<li class="flex items-center gap-4 text-[15px] font-bold">
+<span class="material-symbols-outlined">check_circle</span> 
+                            Bộ 4 sản phẩm full-size
+                        </li>
+<li class="flex items-center gap-4 text-[15px] font-bold">
+<span class="material-symbols-outlined">check_circle</span> 
+                            2 Kem dưỡng &amp; 2 Sữa tắm
+                        </li>
+<li class="flex items-center gap-4 text-[15px] font-bold">
+<span class="material-symbols-outlined">check_circle</span> 
+                            Miễn phí giao hàng hỏa tốc
+                        </li>
+<li class="flex items-center gap-4 text-[15px] font-bold">
+<span class="material-symbols-outlined">check_circle</span> 
+                            Tư vấn da liễu 1:1 định kỳ
+                        </li>
+</ul>
+<button class="w-full py-6 rounded-full bg-white text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:shadow-[0_20px_50px_rgba(255,255,255,0.4)] transition-all">
+                        Sở Hữu Ngay
+                    </button>
+</div>
+<div class="bg-white p-16 rounded-[60px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all flex flex-col group">
+<h3 class="text-3xl font-bold mb-2">Gói Chuyên Sâu</h3>
+<p class="text-gray-400 text-sm mb-10 font-medium">Liệu trình cho da đặc biệt</p>
+<div class="mb-12">
+<span class="text-6xl font-black text-[var(--dark)]">2.499k</span>
+<span class="text-gray-400 font-bold ml-1">/tháng</span>
+</div>
+<ul class="space-y-6 mb-16 flex-grow">
+<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
+                            Đầy đủ 6 sản phẩm cao cấp
+                        </li>
+<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
+                            Hộp quà tặng sang trọng
+                        </li>
+<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
+<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
+                            Ưu tiên thử nghiệm hàng mới
+                        </li>
+</ul>
+<button class="w-full py-6 rounded-full border-2 border-[var(--primary)] text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:bg-[var(--primary)] hover:text-white transition-all">
+                        Đăng ký ngay
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white" id="faq">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
+<div>
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-8 block">HỎI ĐÁP PHỔ BIẾN</span>
+<h2 class="text-5xl lg:text-6xl font-bold mb-16">Những điều bạn quan tâm</h2>
+<div class="space-y-6">
+<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden" open="">
+<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
+<h4 class="font-bold text-xl pr-4">Sản phẩm có dùng được cho bé sơ sinh?</h4>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
+</summary>
+<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
+                            Hoàn toàn an toàn. Atomonde được thiết kế với nồng độ dưỡng chất phù hợp nhất cho làn da non nớt của trẻ sơ sinh ngay từ 0 ngày tuổi, đã qua kiểm nghiệm lâm sàng Dermatest khắt khe nhất.
+                        </div>
+</details>
+<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden">
+<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
+<h4 class="font-bold text-xl pr-4">Hạn sử dụng của sản phẩm là bao lâu?</h4>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
+</summary>
+<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
+                            Sản phẩm có thời hạn 3 năm kể từ ngày sản xuất và nên sử dụng tốt nhất trong vòng 12 tháng sau khi mở nắp để đảm bảo hoạt tính tối ưu của các thành phần tự nhiên.
+                        </div>
+</details>
+<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden">
+<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
+<h4 class="font-bold text-xl pr-4">Tôi có thể kiểm tra hàng trước khi nhận?</h4>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
+</summary>
+<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
+                            Có, Atomonde khuyến khích khách hàng kiểm tra đầy đủ tem niêm phong, mã vạch chính hãng và tình trạng sản phẩm trước khi thanh toán cho đơn vị vận chuyển.
+                        </div>
+</details>
+</div>
+</div>
+<div class="relative">
+<div class="bg-[var(--dark)] p-12 lg:p-20 rounded-[80px] text-white shadow-[0_60px_100px_-20px_rgba(26,28,35,0.3)] relative z-10 border border-white/5">
+<h2 class="text-4xl lg:text-5xl font-bold mb-6">Tư Vấn Chuyên Sâu</h2>
+<p class="text-gray-400 mb-12 text-lg font-light">Để lại thông tin, đội ngũ bác sĩ của chúng tôi sẽ liên hệ tư vấn miễn phí trong 30 phút.</p>
+<form class="space-y-8">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div>
+<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Họ và tên</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+<div>
+<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Số điện thoại</label>
+<input class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="0901 234 567" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Tình trạng da hiện tại</label>
+<textarea class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="Mô tả ngắn về tình trạng da của bé hoặc gia đình..." rows="5"></textarea>
+</div>
+<button class="w-full py-6 rounded-full teal-gradient text-white font-black text-lg uppercase tracking-widest shadow-2xl hover:shadow-[0_20px_50px_rgba(10,186,181,0.4)] transition-all active:scale-95">
+                            Gửi Yêu Cầu Tư Vấn
+                        </button>
+</form>
+</div>
+<div class="absolute -top-16 -right-16 w-64 h-64 bg-[var(--primary)] rounded-full blur-[120px] opacity-10"></div>
+<div class="absolute -bottom-16 -left-16 w-64 h-64 bg-[var(--pink)] rounded-full blur-[120px] opacity-10"></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white py-32 border-t border-gray-50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-10">
+<div class="size-10 bg-[var(--primary)] rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-2xl">eco</span>
+</div>
+<span class="text-2xl font-black tracking-tighter text-[var(--dark)]">Atomonde</span>
+</div>
+<p class="text-[15px] text-gray-400 leading-relaxed mb-10 font-light">Thương hiệu dược mỹ phẩm hàng đầu Hàn Quốc với triết lý: "Gìn giữ vẻ đẹp tự nhiên bằng sự tử tế và khoa học".</p>
+<div class="flex gap-6">
+<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">public</span>
+</a>
+<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">photo_camera</span>
+</a>
+<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined text-xl">movie</span>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Thương Hiệu</h5>
+<ul class="space-y-5 text-[15px] text-gray-500 font-medium">
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Về chúng tôi</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Hệ thống phân phối</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Câu chuyện Atomonde</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chứng nhận quốc tế</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Hỗ Trợ</h5>
+<ul class="space-y-5 text-[15px] text-gray-500 font-medium">
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chính sách vận chuyển</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chính sách đổi trả</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Bảo mật thông tin</a></li>
+<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Hỏi đáp &amp; Liên hệ</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Newsletter</h5>
+<p class="text-[15px] text-gray-500 mb-8 font-light">Đăng ký để nhận bí quyết chăm sóc da khoa học và các ưu đãi mới nhất.</p>
+<div class="flex bg-gray-50 rounded-full p-2 border border-gray-100 shadow-inner">
+<input class="bg-transparent border-none focus:ring-0 px-6 py-3 text-sm flex-grow placeholder:text-gray-400" placeholder="Email của bạn..." type="email"/>
+<button class="bg-[var(--dark)] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[var(--primary)] transition-all">Gửi</button>
+</div>
+</div>
+</div>
+<div class="pt-12 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-8">
+<p class="text-xs text-gray-400 font-black uppercase tracking-[0.2em]">© 2024 Atomonde Vietnam. All rights reserved.</p>
+<div class="flex items-center gap-10 opacity-40 grayscale">
+<div class="h-8 w-14 bg-gray-200 rounded" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWo8xq8G-O5zC0RtV4mXMq8CpkngOwsElzNP01vFatV931kfakx00qbqIiosmhS_0W2WfBtT-H_3y2xF9CiPOaRwwMJIHsAce26YQMegG8I3XNVhOTstWRJ5u4I8YsCvz3SGGScEPU7uTTy-s3Rmk9Tlpq9fwg0Eh-YHwdhHlpvwviwK5PX1WUn_-_GYUqlPy1HcGNV_na841oRo0Az6fMvIeQfWvIg9aj3qxMqTt3qAyDrUClQzDSK0gZqL4aU6OCnbrmPQY9HJA"); background-size: contain; background-repeat: no-repeat; background-position: center;'></div>
+<div class="h-8 w-14 bg-gray-200 rounded" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUQfZkODBbLsQ8X1xqYJ0CRY06uvOmaIs8uJRNB4cYTmopFB_3KILOf68z_VmBwINynNRJeWF3JYRZTIx-WU_pbHh9E026BVlzRmRO02nxyy_WsxsMSax4nRCZBA0BoKXPPtBTWIuaVlXbawHil8sll3VJrJMN7lkUpg6J1KlLWJPn0U0XXBMBtPk_UgxPNXioQRWnztlHBvQGo9AmhUv4SWvafhjnEk6pk77Uql_7D5S8_q-LEb9TwmtIt5PqkoRs8W6PGY4kKi0"); background-size: contain; background-repeat: no-repeat; background-position: center;'></div>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>
