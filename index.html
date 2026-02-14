@@ -16,6 +16,9 @@
                 --cream: #FDFBFA;
                 --mint: #E8F8F7;
             }
+            html {
+                scroll-behavior: smooth;
+            }
             body {
                 @apply font-['Be_Vietnam_Pro'] bg-[var(--cream)] text-[var(--dark)] antialiased;
             }
@@ -23,10 +26,96 @@
                 @apply font-['Playfair_Display'] font-semibold;
             }
         }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(10, 186, 181, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(10, 186, 181, 0.6);
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        @keyframes wave {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(10px);
+            }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .animate-slideInLeft {
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+        .animate-slideInRight {
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .animate-shimmer {
+            background: linear-gradient(90deg, #fff 0%, rgba(10, 186, 181, 0.2) 50%, #fff 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+        .animate-wave {
+            animation: wave 0.6s ease-in-out;
+        }
         .glass-card {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .teal-gradient {
             background: linear-gradient(135deg, #0ABAB5 0%, #089d98 100%);
@@ -39,20 +128,106 @@
         .soft-shadow {
             box-shadow: 0 20px 50px -12px rgba(10, 186, 181, 0.12);
         }
+        button {
+            @apply relative overflow-hidden;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        button:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        section {
+            @apply opacity-0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #0ABAB5 0%, #089d98 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(50px);
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 10px 30px rgba(10, 186, 181, 0.3);
+        }
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(10, 186, 181, 0.5);
+        }
+        input, textarea {
+            @apply transition-all duration-300;
+        }
+        input:focus, textarea:focus {
+            @apply scale-[1.02];
+        }
+        .input-icon {
+            @apply transition-all duration-300;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
+<div class="scroll-top" id="scrollTop">
+<span class="material-symbols-outlined">arrow_upward</span>
+</div>
+
+<!-- Video Modal -->
+<div id="videoModal" class="fixed inset-0 z-[200] bg-black/50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+<div class="bg-white rounded-[40px] overflow-hidden shadow-2xl max-w-4xl w-full animate-fadeInUp">
+<div class="flex items-center justify-between px-8 py-6 border-b border-gray-100">
+<h3 class="text-2xl font-bold text-[var(--dark)]">Quy Trình Chăm Sóc</h3>
+<button id="closeVideoBtn" class="text-gray-400 hover:text-gray-600 transition-colors">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<div class="aspect-video bg-black relative">
+<iframe class="w-full h-full" src="https://www.youtube.com/embed/hG_acKsAkDg" title="Quy Trình Chăm Sóc Atomonde" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</div>
+</div>
 <header class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100">
 <nav class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
 <div class="flex items-center gap-3">
-<div class="size-12 bg-[var(--primary)] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#0ABAB5]/20">
-<span class="material-symbols-outlined text-3xl">eco</span>
+<div class="size-12 rounded-2xl overflow-hidden shadow-lg shadow-[#0ABAB5]/20">
+<img src="images/logo.jpg" alt="Atomonde Logo" class="w-full h-full object-cover"/>
 </div>
 <span class="text-2xl font-black tracking-tighter text-[var(--dark)]">Atomonde</span>
 </div>
 <div class="hidden lg:flex items-center gap-12">
 <a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#hero">Trang chủ</a>
 <a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#features">Đặc tính</a>
+<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#products">Sản Phẩm</a>
 <a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#tech">Công nghệ</a>
 <a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#pricing">Gói giải pháp</a>
 <a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#faq">Hỗ trợ</a>
@@ -67,26 +242,26 @@
 <div class="absolute top-0 right-0 w-[45%] h-[90%] bg-[var(--pink)]/40 -z-10 rounded-bl-[160px]"></div>
 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 <div class="relative z-10">
-<div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm mb-10 border border-[var(--pink)]">
+<div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm mb-10 border border-[var(--pink)] animate-fadeInUp">
 <span class="material-symbols-outlined text-[var(--primary)] text-sm">verified</span>
 <span class="text-[11px] font-black text-[var(--dark)] uppercase tracking-[0.2em]">Dược mỹ phẩm cao cấp Hàn Quốc</span>
 </div>
-<h1 class="text-6xl lg:text-[100px] leading-[0.9] mb-10 text-[var(--dark)]">
+<h1 class="text-6xl lg:text-[100px] leading-[0.9] mb-10 text-[var(--dark)] animate-slideInLeft" style="animation-delay: 0.2s;">
                     Làn Da <span class="italic font-normal text-[var(--primary)]">Khỏe Mạnh</span><br/>Cho Gia Đình
                 </h1>
-<p class="text-lg text-gray-500 mb-12 max-w-lg leading-relaxed font-light">
+<p class="text-lg text-gray-500 mb-12 max-w-lg leading-relaxed font-light animate-slideInLeft" style="animation-delay: 0.4s;">
                     Đánh thức vẻ đẹp tự nhiên bằng công nghệ khóa ẩm <span class="font-bold text-[var(--dark)]">Aquaporin</span> tiên tiến. An toàn tuyệt đối cho trẻ sơ sinh và phục hồi chuyên sâu cho người lớn.
                 </p>
-<div class="flex flex-wrap gap-6 mb-16">
-<button class="bg-[var(--dark)] text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-[var(--primary)] transition-all shadow-2xl hover:-translate-y-1">
+<div class="flex flex-wrap gap-6 mb-16 animate-slideInLeft" style="animation-delay: 0.6s;">
+<button class="bg-[var(--dark)] text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-[var(--primary)] transition-all shadow-2xl hover:-translate-y-1 animate-wave">
                         Mua Ngay
                     </button>
-<button class="flex items-center gap-3 px-10 py-6 rounded-full font-bold text-lg border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-all">
+<button id="playVideoBtn" class="flex items-center gap-3 px-10 py-6 rounded-full font-bold text-lg border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-all">
 <span class="material-symbols-outlined">play_circle</span>
                         Xem Quy Trình
                     </button>
 </div>
-<div class="grid grid-cols-3 gap-12 border-t border-gray-100 pt-10">
+<div class="grid grid-cols-3 gap-12 border-t border-gray-100 pt-10 animate-slideInLeft" style="animation-delay: 0.8s;">
 <div>
 <div class="text-5xl font-black text-[var(--primary)] mb-1">90%</div>
 <div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Độ ẩm tăng cao</div>
@@ -102,11 +277,11 @@
 </div>
 </div>
 <div class="relative">
-<div class="relative aspect-[4/5] rounded-[80px] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] bg-white" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhE7yZOMrSvQgAXUEpw0qx8ZBHSPmkLOu5iQ1kQQfbGNqNxZmgg1pzMlSP1rHo8TaXaS4PChl7jxFjn96RTJkNPPwRxYght5YMyF6TbE9zC_-eVU5Pn0bd5LveQJjj4Gg9Hc9Us1OPELAq74nYshfANEtwcWrsTC2cg4LpoGc4lLR1MT8karNf6_uugDeNCoQZ4QWrMtzlmZfnU-eIGoTJQqFBbip_AEkDuQi2gQkESGr8i0EjVFI-kRjcOp_b6Jw0dzeKjbxjW3M"); background-size: cover; background-position: center;'>
+<div class="relative aspect-[4/5] rounded-[80px] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] bg-white animate-slideInRight" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhE7yZOMrSvQgAXUEpw0qx8ZBHSPmkLOu5iQ1kQQfbGNqNxZmgg1pzMlSP1rHo8TaXaS4PChl7jxFjn96RTJkNPPwRxYght5YMyF6TbE9zC_-eVU5Pn0bd5LveQJjj4Gg9Hc9Us1OPELAq74nYshfANEtwcWrsTC2cg4LpoGc4lLR1MT8karNf6_uugDeNCoQZ4QWrMtzlmZfnU-eIGoTJQqFBbip_AEkDuQi2gQkESGr8i0EjVFI-kRjcOp_b6Jw0dzeKjbxjW3M"); background-size: cover; background-position: center;'>
 <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
 </div>
-<div class="absolute -top-12 -right-12 size-56 rounded-[50px] border-[12px] border-white shadow-2xl overflow-hidden" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWumbPLZJodElD9OJAyNGtDbPailO2F5--5JNW98de0GuNIDdBkzr8K-RyI7I3SQay1VEbxvd7el3dspvtOPg-WaHZYMyoHfy2XMNiULcWvjKCwC_Ypb1ftOoRwDK5q2wMprMGEWZI2AnqJYh9S8ARJ91lNf8zDSAyRM3asQ2AJiiTkD78yNEkM-q5wvf9y74C4SwxUf-wlzloEcLU2pYe92YgmZgdNVZ9rXt39pAVRpLC4p0giU4423MNcMEJXcOU6iiOhYnxiEI"); background-size: cover; background-position: center;'></div>
-<div class="absolute -bottom-12 -left-12 glass-card p-10 rounded-[50px] shadow-2xl max-w-[320px]">
+<div class="absolute -top-12 -right-12 size-56 rounded-[50px] border-[12px] border-white shadow-2xl overflow-hidden animate-float" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWumbPLZJodElD9OJAyNGtDbPailO2F5--5JNW98de0GuNIDdBkzr8K-RyI7I3SQay1VEbxvd7el3dspvtOPg-WaHZYMyoHfy2XMNiULcWvjKCwC_Ypb1ftOoRwDK5q2wMprMGEWZI2AnqJYh9S8ARJ91lNf8zDSAyRM3asQ2AJiiTkD78yNEkM-q5wvf9y74C4SwxUf-wlzloEcLU2pYe92YgmZgdNVZ9rXt39pAVRpLC4p0giU4423MNcMEJXcOU6iiOhYnxiEI"); background-size: cover; background-position: center;'></div>
+<div class="absolute -bottom-12 -left-12 glass-card p-10 rounded-[50px] shadow-2xl max-w-[320px] animate-slideInLeft" style="animation-delay: 1s;">
 <div class="flex gap-1 mb-5">
 <span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
 <span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
@@ -292,45 +467,65 @@
 </div>
 </div>
 </section>
-<section class="py-32 bg-white" id="experts">
+<section class="py-32 bg-white" id="products">
 <div class="max-w-7xl mx-auto px-6">
 <div class="text-center mb-24">
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">ĐỘI NGŨ CHUYÊN GIA</span>
-<h2 class="text-5xl lg:text-6xl mb-8">Cố Vấn Da Liễu Hàng Đầu</h2>
-<p class="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">Sự kết hợp giữa chuyên môn quốc tế và am hiểu đặc tính làn da người Việt.</p>
+<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">BỘ SƯU TẬP SẢN PHẨM</span>
+<h2 class="text-5xl lg:text-6xl mb-8 font-bold">Dòng Sản Phẩm Chăm Sóc Toàn Diện</h2>
+<p class="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">Mỗi sản phẩm được tạo ra với sự tỉ mỉ, kết hợp công nghệ Hàn Quốc tiên tiến và nguyên liệu thiên nhiên quý hiếm.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-<div class="text-center group">
-<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
-<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA-LKEX0m2j1kn1IUElA-jD3sHQGwJhP7qbScIURRjCC2lEkjdp0y7v3M4Zpy3p6sTb7rdDVsaS0gOJiKhMXOjXe6wKn-lDkLLsR0CTuKleazi_A4V4AJn0KmxIZdc9caB0JQN_TUMi25HwJetbuzt1TG4aK6e1gJdFendTGH8E13AyxCqEjzRf_myZ-2h9zZ_qjDZs-A4X2zEwqK8X7YiZ02QOBUD8V4Oy91RcCKFLkCTwOBiP5O3Q_Je5rCmgmIzXCksX3M5_3W4"); background-size: cover; background-position: center;'></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp">
+<div class="relative w-full h-80 bg-gradient-to-br from-[var(--pink)]/10 to-[var(--secondary)]/10 overflow-hidden">
+<img src="images/product_1.jpg" alt="Sản phẩm 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
 </div>
-<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Kim So-Hee</h4>
-<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Trưởng phòng Nghiên cứu</p>
-<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Chuyên gia 15 năm trong lĩnh vực phục hồi da cho trẻ em tại Seoul, Hàn Quốc.</p>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Kem Dưỡng Ẩm</h3>
+<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Công thức Aquaporin Booster giúp da khóa ẩm 24h, phù hợp với mọi loại da, đặc biệt cho trẻ sơ sinh.</p>
+<div class="flex items-center justify-between">
+<span class="text-[var(--primary)] font-bold">200ml</span>
+<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
 </div>
-<div class="text-center group">
-<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
-<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5f9bc2oTY1sXZxZbuwScAFCaw-9bnSIUonDajeIJMX7LLRUmVK1f-s5NSayC_6IpqMGAEMASO9rmYqdT12-oTzzRHX1i1L2cceMBvykWFnrpC6_B3-gby_VOVVn1TipfKDZQYoqWdMdcKmjlu0vphejaKvX4a1v0dms0aH4uSNoXMyZr8qTchek4cy-RlfWlufERy-ueSv6D03QqcuRQBH16K5BgVZ-vVBUMY8x-hRYtpfIkykQzYeGGHaffOtvIK6kuzdJRhF0I"); background-size: cover; background-position: center;'></div>
 </div>
-<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Minh Anh</h4>
-<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Cố vấn chuyên môn VN</p>
-<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Thạc sĩ Da liễu từ Đại học Y Dược, chuyên sâu về dị ứng thời tiết nhiệt đới.</p>
 </div>
-<div class="text-center group">
-<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
-<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAd2qoz5e1S8r5PGPnhwQZrapkBUF2dK6UIJCEdFS1T7bzVLcy19rWGiWpY-OewJpU2Pzk2XVJSNdRbsWRfTZI7WsUyHjj3Hx6EN3SQCqH_trusEaXmKugidvl7bUOOPdsi1TwaV6L5eqCXf8HZ45xew3z4yHm8MisECFekOluRlyl2JmpzC-xTnpBCKvx6y6cNqL7odLG2CJ8ElbwMsUWgi9oUMJCBVJf-1K-Fhnvkx3j8xt_lrgDCM6vcYl1sSgInD1h8VQRREi8"); background-size: cover; background-position: center;'></div>
+<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.1s;">
+<div class="relative w-full h-80 bg-gradient-to-br from-[var(--mint)]/20 to-[var(--primary)]/10 overflow-hidden">
+<img src="images/product_2.jpg" alt="Sản phẩm 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
 </div>
-<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Ms. Park Ji-Won</h4>
-<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Chuyên gia Công thức</p>
-<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Tác giả của hơn 20 bằng sáng chế về công nghệ khóa ẩm nano sinh học.</p>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Sữa Tắm Gội</h3>
+<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Sản phẩm 2 trong 1 Nano-Barrier Pro, rửa sạch nhẹ nhàng mà không làm mất độ ẩm tự nhiên của da.</p>
+<div class="flex items-center justify-between">
+<span class="text-[var(--primary)] font-bold">300ml</span>
+<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
 </div>
-<div class="text-center group">
-<div class="size-56 rounded-full mx-auto mb-8 border-4 border-[var(--pink)] p-3 group-hover:scale-105 transition-transform duration-500">
-<div class="w-full h-full rounded-full bg-gray-100 overflow-hidden shadow-inner" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWYYARlOVXlwv2oJqqmIB8gztTd7UUaDV6t6aghKF6b9mR8q5yE24h7VlW743OPfJ7CUBa1I2F2OfCxb-nebJQAD6S0aTtm3GH9tsPGbJagpUP6DA48hVRaFi3sm6ISdSKNtLeAi7JQEu1eB2PuqHL7bj6Nv2xpQSwPXdjJ2A5wgRxkMxxasGqgI2UfogDeeYPYOlvIJIJAbE91DaCPTOhLoFVFGKVmLFGwJzfaQDvCp7zzVpL9b_Qr0hfwGlMSnlGp3E3PSqWM9k"); background-size: cover; background-position: center;'></div>
 </div>
-<h4 class="text-2xl font-bold text-[var(--dark)] mb-2">Dr. Thomas Berg</h4>
-<p class="text-[var(--primary)] text-sm font-black mb-4 uppercase tracking-widest">Giám định Chất lượng</p>
-<p class="text-gray-400 text-[13px] leading-relaxed px-4 font-light">Đại diện từ Dermatest (Đức), đảm bảo các tiêu chuẩn an toàn quốc tế khắt khe nhất.</p>
+</div>
+<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.2s;">
+<div class="relative w-full h-80 bg-gradient-to-br from-[var(--pink)]/20 to-[var(--secondary)]/10 overflow-hidden">
+<img src="images/product_3.jpg" alt="Sản phẩm 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Serum Phục Hồi</h3>
+<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Tập trung dưỡng chất Dermatest Excellence, xâm nhập sâu vào các lớp da để tái tạo hàng rào bảo vệ.</p>
+<div class="flex items-center justify-between">
+<span class="text-[var(--primary)] font-bold">30ml</span>
+<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
+</div>
+</div>
+</div>
+<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.3s;">
+<div class="relative w-full h-80 bg-gradient-to-br from-[var(--mint)]/10 to-[var(--pink)]/10 overflow-hidden">
+<img src="images/product_4.jpg" alt="Sản phẩm 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
+</div>
+<div class="p-8">
+<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Nước Tẩy Tế Bào</h3>
+<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Dung dịch Eco-Balance Extraction làm sạch từ sâu mà không gây kích ứng, pH cân bằng 5.5.</p>
+<div class="flex items-center justify-between">
+<span class="text-[var(--primary)] font-bold">250ml</span>
+<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -680,5 +875,123 @@
 </div>
 </div>
 </footer>
+
+<script>
+// Scroll to top button functionality
+const scrollTopBtn = document.getElementById('scrollTop');
+const scrollThreshold = 300;
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+        scrollTopBtn.classList.add('show');
+    } else {
+        scrollTopBtn.classList.remove('show');
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Video modal functionality
+const videoModal = document.getElementById('videoModal');
+const playVideoBtn = document.getElementById('playVideoBtn');
+const closeVideoBtn = document.getElementById('closeVideoBtn');
+
+if (playVideoBtn) {
+    playVideoBtn.addEventListener('click', () => {
+        videoModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (closeVideoBtn) {
+    closeVideoBtn.addEventListener('click', () => {
+        videoModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// Close modal when clicking outside
+videoModal.addEventListener('click', (e) => {
+    if (e.target === videoModal) {
+        videoModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
+        videoModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Add ripple effect to buttons
+function addRippleEffect() {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if (e.target === this || e.target.closest('button') === this) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+            }
+        });
+    });
+}
+
+// Initialize effects when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    addRippleEffect();
+    
+    // Add fade-in effect to elements
+    const elements = document.querySelectorAll('.glass-card, [class*="animate-"]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    elements.forEach(el => observer.observe(el));
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+// Add hover animation to feature cards
+const cards = document.querySelectorAll('.glass-card');
+cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+    });
+});
+</script>
 
 </body></html>
