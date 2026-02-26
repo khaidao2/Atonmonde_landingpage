@@ -1,997 +1,1627 @@
 <!DOCTYPE html>
-<html class="light" lang="vi"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Atomonde - Dược Mỹ Phẩm Cao Cấp Cho Cả Gia Đình</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style type="text/tailwindcss">
-        @layer base {
-            :root {
-                --primary: #0ABAB5;
-                --secondary: #56DFCF;
-                --pink: #FFEDF3;
-                --dark: #1A1C23;
-                --cream: #FDFBFA;
-                --mint: #E8F8F7;
-            }
-            html {
-                scroll-behavior: smooth;
-            }
-            body {
-                @apply font-['Be_Vietnam_Pro'] bg-[var(--cream)] text-[var(--dark)] antialiased;
-            }
-            h1, h2, h3, .font-serif {
-                @apply font-['Playfair_Display'] font-semibold;
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(10, 186, 181, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(10, 186, 181, 0.6);
-            }
-        }
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-        @keyframes wave {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(10px);
-            }
-        }
-        .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-        .animate-slideInLeft {
-            animation: slideInLeft 0.6s ease-out forwards;
-        }
-        .animate-slideInRight {
-            animation: slideInRight 0.6s ease-out forwards;
-        }
-        .animate-float {
-            animation: float 3s ease-in-out infinite;
-        }
-        .animate-pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        .animate-shimmer {
-            background: linear-gradient(90deg, #fff 0%, rgba(10, 186, 181, 0.2) 50%, #fff 100%);
-            background-size: 1000px 100%;
-            animation: shimmer 2s infinite;
-        }
-        .animate-wave {
-            animation: wave 0.6s ease-in-out;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .teal-gradient {
-            background: linear-gradient(135deg, #0ABAB5 0%, #089d98 100%);
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #0ABAB5 0%, #56DFCF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .soft-shadow {
-            box-shadow: 0 20px 50px -12px rgba(10, 186, 181, 0.12);
-        }
-        button {
-            @apply relative overflow-hidden;
-        }
-        button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        button:active::after {
-            width: 300px;
-            height: 300px;
-        }
-        section {
-            @apply opacity-0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        section:nth-child(1) { animation-delay: 0.1s; }
-        section:nth-child(2) { animation-delay: 0.2s; }
-        section:nth-child(3) { animation-delay: 0.3s; }
-        section:nth-child(4) { animation-delay: 0.4s; }
-        section:nth-child(5) { animation-delay: 0.5s; }
-        section:nth-child(6) { animation-delay: 0.6s; }
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #0ABAB5 0%, #089d98 100%);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(50px);
-            transition: all 0.3s ease;
-            z-index: 99;
-            box-shadow: 0 10px 30px rgba(10, 186, 181, 0.3);
-        }
-        .scroll-top.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(10, 186, 181, 0.5);
-        }
-        input, textarea {
-            @apply transition-all duration-300;
-        }
-        input:focus, textarea:focus {
-            @apply scale-[1.02];
-        }
-        .input-icon {
-            @apply transition-all duration-300;
-        }
-    </style>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>ATOMONDE | The COS Korea — Skincare for the Whole Family</title>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,line-clamp"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+  <style type="text/tailwindcss">
+    @layer base {
+      :root{
+        --primary:#24665D;
+        --secondary:#8BC1B8;
+        --accent:#548981;
+        --dark:#2C4A54;
+        --cream:#FFFFFF;
+        --mint:#F4FBFA;
+      }
+      html{ scroll-behavior:smooth; }
+      body{ @apply font-['Be_Vietnam_Pro'] bg-[var(--cream)] text-[var(--dark)] antialiased; }
+      h1,h2,h3,.font-serif{ @apply font-['Playfair_Display'] font-semibold; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior:auto !important; }
+    }
+
+    .glass-card{
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(36,102,93,.10);
+      transition: all .25s cubic-bezier(.4,0,.2,1);
+    }
+    .soft-shadow{ box-shadow: 0 22px 60px -18px rgba(36,102,93,.20); }
+    .brand-gradient{ background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); }
+    .text-gradient{
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+
+    /* ripple */
+    .ripple{ position:absolute; border-radius:9999px; transform:scale(0); opacity:.28; background: currentColor; animation:ripple .6s ease-out; pointer-events:none; }
+    @keyframes ripple{ to{ transform:scale(2.5); opacity:0; } }
+
+    /* product interaction */
+    .product-card{ transition: transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s; }
+    .product-card:hover{ transform: translateY(-6px); box-shadow: 0 28px 70px -22px rgba(36,102,93,.30); }
+    .product-media img{ transition: transform .45s cubic-bezier(.2,.8,.2,1); }
+    .product-card:hover .product-media img{ transform: scale(1.08); }
+    .quick-actions{ transition: opacity .25s, transform .25s; opacity:0; transform: translateY(10px); }
+    .product-card:hover .quick-actions{ opacity:1; transform: translateY(0); }
+
+    /* certificate cards (fit 409x610 without cropping) */
+    .cert-card{ transition: transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s; }
+    .cert-card:hover{ transform: translateY(-6px); box-shadow: 0 28px 70px -22px rgba(36,102,93,.22); }
+    .cert-img{ width:100%; height:100%; object-fit:contain; background:#fff; }
+  </style>
 </head>
+
 <body class="overflow-x-hidden">
-<div class="scroll-top" id="scrollTop">
-<span class="material-symbols-outlined">arrow_upward</span>
-</div>
+  <!-- Scroll top -->
+  <button id="scrollTop" aria-label="Back to top"
+    class="fixed bottom-6 right-6 z-[90] hidden size-12 rounded-full text-white brand-gradient soft-shadow hover:-translate-y-1 transition">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
 
-<!-- Video Modal -->
-<div id="videoModal" class="fixed inset-0 z-[200] bg-black/50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-<div class="bg-white rounded-[40px] overflow-hidden shadow-2xl max-w-4xl w-full animate-fadeInUp">
-<div class="flex items-center justify-between px-8 py-6 border-b border-gray-100">
-<h3 class="text-2xl font-bold text-[var(--dark)]">Quy Trình Chăm Sóc</h3>
-<button id="closeVideoBtn" class="text-gray-400 hover:text-gray-600 transition-colors">
-<span class="material-symbols-outlined text-3xl">close</span>
-</button>
-</div>
-<div class="aspect-video bg-black relative">
-<iframe class="w-full h-full" src="https://www.youtube.com/embed/hG_acKsAkDg" title="Quy Trình Chăm Sóc Atomonde" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-</div>
-</div>
-<header class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-gray-100">
-<nav class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-12 rounded-2xl overflow-hidden shadow-lg shadow-[#0ABAB5]/20">
-<img src="images/logo.jpg" alt="Atomonde Logo" class="w-full h-full object-cover"/>
-</div>
-<span class="text-2xl font-black tracking-tighter text-[var(--dark)]">Atomonde</span>
-</div>
-<div class="hidden lg:flex items-center gap-12">
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#hero">Trang chủ</a>
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#features">Đặc tính</a>
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#products">Sản Phẩm</a>
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#tech">Công nghệ</a>
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#pricing">Gói giải pháp</a>
-<a class="text-sm font-bold text-[var(--dark)] hover:text-[var(--primary)] transition-colors" href="#faq">Hỗ trợ</a>
-</div>
-<button class="bg-[var(--primary)] text-white px-8 py-4 rounded-full font-extrabold text-sm shadow-xl shadow-[#0ABAB5]/30 hover:shadow-[#0ABAB5]/50 transition-all active:scale-95">
-            Nhận Tư Vấn
+  <!-- Video Modal -->
+  <div id="videoModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div class="bg-white rounded-[28px] overflow-hidden shadow-2xl max-w-4xl w-full">
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <h3 class="text-xl font-bold text-[var(--dark)]" data-i18n="video_title">Care Routine</h3>
+        <button id="closeVideoBtn" class="text-gray-400 hover:text-gray-600 transition" aria-label="Close video">
+          <i class="fa-solid fa-xmark text-2xl"></i>
         </button>
-</nav>
-</header>
-<main>
-<section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden" id="hero">
-<div class="absolute top-0 right-0 w-[45%] h-[90%] bg-[var(--pink)]/40 -z-10 rounded-bl-[160px]"></div>
-<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-<div class="relative z-10">
-<div class="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow-sm mb-10 border border-[var(--pink)] animate-fadeInUp">
-<span class="material-symbols-outlined text-[var(--primary)] text-sm">verified</span>
-<span class="text-[11px] font-black text-[var(--dark)] uppercase tracking-[0.2em]">Dược mỹ phẩm cao cấp Hàn Quốc</span>
-</div>
-<h1 class="text-6xl lg:text-[100px] leading-[0.9] mb-10 text-[var(--dark)] animate-slideInLeft" style="animation-delay: 0.2s;">
-                    Làn Da <span class="italic font-normal text-[var(--primary)]">Khỏe Mạnh</span><br/>Cho Gia Đình
-                </h1>
-<p class="text-lg text-gray-500 mb-12 max-w-lg leading-relaxed font-light animate-slideInLeft" style="animation-delay: 0.4s;">
-                    Đánh thức vẻ đẹp tự nhiên bằng công nghệ khóa ẩm <span class="font-bold text-[var(--dark)]">Aquaporin</span> tiên tiến. An toàn tuyệt đối cho trẻ sơ sinh và phục hồi chuyên sâu cho người lớn.
-                </p>
-<div class="flex flex-wrap gap-6 mb-16 animate-slideInLeft" style="animation-delay: 0.6s;">
-<button class="bg-[var(--dark)] text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-[var(--primary)] transition-all shadow-2xl hover:-translate-y-1 animate-wave">
-                        Mua Ngay
-                    </button>
-<button id="playVideoBtn" class="flex items-center gap-3 px-10 py-6 rounded-full font-bold text-lg border-2 border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white transition-all">
-<span class="material-symbols-outlined">play_circle</span>
-                        Xem Quy Trình
-                    </button>
-</div>
-<div class="grid grid-cols-3 gap-12 border-t border-gray-100 pt-10 animate-slideInLeft" style="animation-delay: 0.8s;">
-<div>
-<div class="text-5xl font-black text-[var(--primary)] mb-1">90%</div>
-<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Độ ẩm tăng cao</div>
-</div>
-<div>
-<div class="text-5xl font-black text-[var(--primary)] mb-1">100%</div>
-<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Thuần organic</div>
-</div>
-<div>
-<div class="text-5xl font-black text-[var(--primary)] mb-1">2016</div>
-<div class="text-[10px] font-black uppercase tracking-widest text-gray-400">Ra mắt</div>
-</div>
-</div>
-</div>
-<div class="relative">
-<div class="relative aspect-[4/5] rounded-[80px] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] bg-white animate-slideInRight" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAhE7yZOMrSvQgAXUEpw0qx8ZBHSPmkLOu5iQ1kQQfbGNqNxZmgg1pzMlSP1rHo8TaXaS4PChl7jxFjn96RTJkNPPwRxYght5YMyF6TbE9zC_-eVU5Pn0bd5LveQJjj4Gg9Hc9Us1OPELAq74nYshfANEtwcWrsTC2cg4LpoGc4lLR1MT8karNf6_uugDeNCoQZ4QWrMtzlmZfnU-eIGoTJQqFBbip_AEkDuQi2gQkESGr8i0EjVFI-kRjcOp_b6Jw0dzeKjbxjW3M"); background-size: cover; background-position: center;'>
-<div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-</div>
-<div class="absolute -top-12 -right-12 size-56 rounded-[50px] border-[12px] border-white shadow-2xl overflow-hidden animate-float" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWumbPLZJodElD9OJAyNGtDbPailO2F5--5JNW98de0GuNIDdBkzr8K-RyI7I3SQay1VEbxvd7el3dspvtOPg-WaHZYMyoHfy2XMNiULcWvjKCwC_Ypb1ftOoRwDK5q2wMprMGEWZI2AnqJYh9S8ARJ91lNf8zDSAyRM3asQ2AJiiTkD78yNEkM-q5wvf9y74C4SwxUf-wlzloEcLU2pYe92YgmZgdNVZ9rXt39pAVRpLC4p0giU4423MNcMEJXcOU6iiOhYnxiEI"); background-size: cover; background-position: center;'></div>
-<div class="absolute -bottom-12 -left-12 glass-card p-10 rounded-[50px] shadow-2xl max-w-[320px] animate-slideInLeft" style="animation-delay: 1s;">
-<div class="flex gap-1 mb-5">
-<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
-<span class="material-symbols-outlined text-yellow-400 fill-1">star</span>
-</div>
-<p class="text-[15px] italic text-gray-700 leading-relaxed">"Làn da bé nhà mình mềm mượt hẳn chỉ sau 3 ngày sử dụng. Cảm ơn Atomonde!"</p>
-<p class="text-xs font-black mt-5 text-[var(--dark)] uppercase tracking-wider">— Chị Ngọc, Hà Nội</p>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-white" id="features">
-<div class="max-w-7xl mx-auto px-6">
-<div class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-12">
-<div class="max-w-2xl">
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">TẠI SAO CHỌN CHÚNG TÔI?</span>
-<h2 class="text-5xl lg:text-7xl leading-tight">Sự Giao Thoa Giữa <br/><span class="text-gradient">Thiên Nhiên &amp; Khoa Học</span></h2>
-</div>
-<p class="text-gray-500 max-w-sm mb-2 text-lg font-light leading-relaxed">Chúng tôi mang đến giải pháp bảo vệ sức khỏe làn da toàn diện cho cả gia đình bằng sự tử tế và chuyên nghiệp.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
-<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--pink)]/10 border-pink-100/50">
-<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
-<span class="material-symbols-outlined text-[var(--primary)] text-4xl">child_care</span>
-</div>
-<div>
-<h3 class="text-3xl font-bold mb-4">Siêu Dịu Nhẹ</h3>
-<p class="text-gray-500 leading-relaxed font-light">Độ pH 5.5 cân bằng hoàn hảo, không gây cay mắt và an toàn cho trẻ sơ sinh từ 0 ngày tuổi.</p>
-</div>
-</div>
-<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--secondary)]/10 border-teal-100/50">
-<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
-<span class="material-symbols-outlined text-[var(--primary)] text-4xl">water_drop</span>
-</div>
-<div>
-<h3 class="text-3xl font-bold mb-4">Khóa Ẩm 24H</h3>
-<p class="text-gray-500 leading-relaxed font-light">Cung cấp độ ẩm tức thì và duy trì hàng rào bảo vệ da suốt cả ngày dài dưới mọi thời tiết.</p>
-</div>
-</div>
-<div class="glass-card p-12 rounded-[50px] flex flex-col gap-8 hover:shadow-2xl transition-all hover:-translate-y-3 bg-[var(--primary)]/5 border-teal-50/50">
-<div class="size-20 rounded-3xl bg-white flex items-center justify-center shadow-sm">
-<span class="material-symbols-outlined text-[var(--primary)] text-4xl">eco</span>
-</div>
-<div>
-<h3 class="text-3xl font-bold mb-4">100% Hữu Cơ</h3>
-<p class="text-gray-500 leading-relaxed font-light">Chiết xuất thảo mộc quý hiếm, không chứa corticoid, paraben hay hương liệu tổng hợp.</p>
-</div>
-</div>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center bg-[var(--mint)] rounded-[80px] p-10 lg:p-24">
-<div class="relative">
-<div class="aspect-square rounded-[60px] overflow-hidden shadow-2xl" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOWTY9jUt3ZiaCepxBUGxJ7jwC2PzEVSfYkMawXaUUVJRbEcgfXnJHDKzEBb-x8pqKf9EYRydZBFVDiArVyQDR9DlBRU9miFRw-aYJZu--k2yYw4-C6YcLYqdykrBwtfO618EsEjizIC64a_4Z-DCK2EMKTXaAI__pzmcW9V_-dyNE31SCd8_8ZQJpR4DHu2Eo_QyToxIsGi5pYVWc4BGCBJKmmIcFH2QSBi5YYKj-dos73yWZMuAsxXrn-8NJHkxDTB2LZeGOz_E"); background-size: cover; background-position: center;'></div>
-<div class="absolute -bottom-10 -right-10 teal-gradient text-white p-12 rounded-[50px] shadow-2xl">
-<span class="text-7xl font-black block mb-2 leading-none">1M+</span>
-<span class="text-xs font-black uppercase tracking-[0.3em] opacity-80">Gia đình tin dùng</span>
-</div>
-</div>
-<div class="space-y-12">
-<h2 class="text-5xl leading-tight">Lợi ích vượt trội cho làn da nhạy cảm</h2>
-<div class="grid gap-10">
-<div class="flex gap-8 items-start">
-<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
-<span class="material-symbols-outlined text-2xl">done_all</span>
-</div>
-<div>
-<h4 class="text-xl font-bold mb-3">Phục hồi màng Lipid</h4>
-<p class="text-gray-500 leading-relaxed font-light">Tăng cường hàng rào bảo vệ da tự nhiên, giúp da chống lại các tác nhân gây hại từ môi trường.</p>
-</div>
-</div>
-<div class="flex gap-8 items-start">
-<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
-<span class="material-symbols-outlined text-2xl">done_all</span>
-</div>
-<div>
-<h4 class="text-xl font-bold mb-3">Làm dịu tức thì</h4>
-<p class="text-gray-500 leading-relaxed font-light">Giảm tình trạng mẩn đỏ, ngứa ngáy do chàm (eczema) hoặc kích ứng do thay đổi thời tiết.</p>
-</div>
-</div>
-<div class="flex gap-8 items-start">
-<div class="shrink-0 size-14 rounded-2xl bg-[var(--primary)] text-white flex items-center justify-center shadow-lg shadow-teal-500/30">
-<span class="material-symbols-outlined text-2xl">done_all</span>
-</div>
-<div>
-<h4 class="text-xl font-bold mb-3">Thẩm thấu Nano</h4>
-<p class="text-gray-500 leading-relaxed font-light">Kết cấu mỏng nhẹ, không gây nhờn rít, phù hợp hoàn hảo cho khí hậu nóng ẩm tại Việt Nam.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-[var(--dark)] text-white rounded-[60px] lg:rounded-[120px] mx-6 my-12" id="tech">
-<div class="max-w-7xl mx-auto px-10">
-<div class="text-center mb-24">
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">KHOA HỌC TIÊN PHONG</span>
-<h2 class="text-5xl lg:text-7xl mb-8">Đỉnh Cao Công Nghệ Hàn Quốc</h2>
-<p class="text-gray-400 max-w-2xl mx-auto text-lg font-light">Mỗi sản phẩm là một công trình nghiên cứu chuyên sâu từ các phòng Lab hàng đầu Seoul.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
-<div class="flex justify-between items-start mb-12">
-<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">01</span>
-<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-4xl text-[var(--primary)]">science</span>
-</div>
-</div>
-<h3 class="text-4xl font-bold mb-6">Aquaporin Booster</h3>
-<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Kích hoạt các "kênh dẫn nước" tự nhiên trong tế bào, giúp da tự cấp ẩm từ bên trong thay vì chỉ bôi lớp ngoài.</p>
-<ul class="space-y-4">
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Tăng 400% khả năng giữ nước
-                        </li>
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Hiệu quả dưỡng ẩm kéo dài 48h
-                        </li>
-</ul>
-</div>
-<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
-<div class="flex justify-between items-start mb-12">
-<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">02</span>
-<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-4xl text-[var(--primary)]">biotech</span>
-</div>
-</div>
-<h3 class="text-4xl font-bold mb-6">Nano-Barrier Pro</h3>
-<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Cấu trúc Ceramide siêu nhỏ len lỏi qua từng kẽ hở lớp sừng, tái tạo hàng rào bảo vệ vững chắc cho da nhạy cảm.</p>
-<ul class="space-y-4">
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Bảo vệ da khỏi bụi mịn PM2.5
-                        </li>
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Phục hồi da tổn thương cấp tốc
-                        </li>
-</ul>
-</div>
-<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
-<div class="flex justify-between items-start mb-12">
-<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">03</span>
-<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-4xl text-[var(--primary)]">fact_check</span>
-</div>
-</div>
-<h3 class="text-4xl font-bold mb-6">Dermatest Excellence</h3>
-<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Đạt chứng chỉ 5 SAO từ Viện Da liễu Đức Dermatest - tiêu chuẩn cao nhất thế giới về an toàn mỹ phẩm.</p>
-<ul class="space-y-4">
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            0% chất gây dị ứng và kích ứng
-                        </li>
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Kiểm nghiệm lâm sàng trên 1000 người
-                        </li>
-</ul>
-</div>
-<div class="group bg-white/5 p-12 rounded-[60px] border border-white/10 hover:border-[var(--primary)]/50 transition-all duration-500 hover:bg-white/10">
-<div class="flex justify-between items-start mb-12">
-<span class="text-8xl font-black text-white/5 font-serif group-hover:text-[var(--primary)]/20 transition-colors">04</span>
-<div class="size-16 rounded-2xl bg-[var(--primary)]/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-4xl text-[var(--primary)]">temp_preferences_custom</span>
-</div>
-</div>
-<h3 class="text-4xl font-bold mb-6">Eco-Balance Extraction</h3>
-<p class="text-gray-400 leading-relaxed text-lg font-light mb-8">Quy trình chiết xuất lạnh giữ trọn vẹn 100% hoạt tính dưỡng chất từ thảo mộc thiên nhiên quý hiếm.</p>
-<ul class="space-y-4">
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Giữ nguyên tinh túy tự nhiên tinh khiết
-                        </li>
-<li class="flex items-center gap-4 text-sm text-gray-300 font-medium">
-<span class="size-2 bg-[var(--primary)] rounded-full"></span> 
-                            Thân thiện tuyệt đối với môi trường
-                        </li>
-</ul>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-white" id="products">
-<div class="max-w-7xl mx-auto px-6">
-<div class="text-center mb-24">
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">BỘ SƯU TẬP SẢN PHẨM</span>
-<h2 class="text-5xl lg:text-6xl mb-8 font-bold">Dòng Sản Phẩm Chăm Sóc Toàn Diện</h2>
-<p class="text-gray-500 max-w-2xl mx-auto text-lg font-light leading-relaxed">Mỗi sản phẩm được tạo ra với sự tỉ mỉ, kết hợp công nghệ Hàn Quốc tiên tiến và nguyên liệu thiên nhiên quý hiếm.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp">
-<div class="relative w-full h-80 bg-gradient-to-br from-[var(--pink)]/10 to-[var(--secondary)]/10 overflow-hidden">
-<img src="images/product_1.jpg" alt="Sản phẩm 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-</div>
-<div class="p-8">
-<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Kem Dưỡng Ẩm</h3>
-<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Công thức Aquaporin Booster giúp da khóa ẩm 24h, phù hợp với mọi loại da, đặc biệt cho trẻ sơ sinh.</p>
-<div class="flex items-center justify-between">
-<span class="text-[var(--primary)] font-bold">200ml</span>
-<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.1s;">
-<div class="relative w-full h-80 bg-gradient-to-br from-[var(--mint)]/20 to-[var(--primary)]/10 overflow-hidden">
-<img src="images/product_2.jpg" alt="Sản phẩm 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-</div>
-<div class="p-8">
-<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Sữa Tắm Gội</h3>
-<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Sản phẩm 2 trong 1 Nano-Barrier Pro, rửa sạch nhẹ nhàng mà không làm mất độ ẩm tự nhiên của da.</p>
-<div class="flex items-center justify-between">
-<span class="text-[var(--primary)] font-bold">300ml</span>
-<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.2s;">
-<div class="relative w-full h-80 bg-gradient-to-br from-[var(--pink)]/20 to-[var(--secondary)]/10 overflow-hidden">
-<img src="images/product_3.jpg" alt="Sản phẩm 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-</div>
-<div class="p-8">
-<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Serum Phục Hồi</h3>
-<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Tập trung dưỡng chất Dermatest Excellence, xâm nhập sâu vào các lớp da để tái tạo hàng rào bảo vệ.</p>
-<div class="flex items-center justify-between">
-<span class="text-[var(--primary)] font-bold">30ml</span>
-<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
-</div>
-</div>
-</div>
-<div class="group bg-white rounded-[60px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 animate-fadeInUp" style="animation-delay: 0.3s;">
-<div class="relative w-full h-80 bg-gradient-to-br from-[var(--mint)]/10 to-[var(--pink)]/10 overflow-hidden">
-<img src="images/product_4.jpg" alt="Sản phẩm 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
-</div>
-<div class="p-8">
-<h3 class="text-2xl font-bold mb-3 text-[var(--dark)]">Nước Tẩy Tế Bào</h3>
-<p class="text-gray-500 text-sm leading-relaxed mb-6 font-light">Dung dịch Eco-Balance Extraction làm sạch từ sâu mà không gây kích ứng, pH cân bằng 5.5.</p>
-<div class="flex items-center justify-between">
-<span class="text-[var(--primary)] font-bold">250ml</span>
-<button class="bg-[var(--primary)] text-white px-6 py-3 rounded-full text-xs font-black hover:bg-[var(--dark)] transition-all">Thêm vào</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-[var(--cream)] overflow-hidden">
-<div class="max-w-7xl mx-auto px-6">
-<h2 class="text-5xl lg:text-7xl font-bold text-center mb-24">Câu Chuyện Từ Khách Hàng</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
-<div class="bg-white p-12 rounded-[60px] shadow-sm flex flex-col gap-8 hover:shadow-xl transition-all">
-<div class="flex gap-1">
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-</div>
-<p class="text-gray-600 leading-relaxed italic text-lg font-light">"Bé nhà mình bị chàm sữa nặng, dùng bao nhiêu loại không đỡ. Từ khi dùng Atomonde, da con mướt lắm, không còn đỏ ửng mỗi khi trời hanh nữa."</p>
-<div class="flex items-center gap-5 pt-8 border-t border-gray-100 mt-auto">
-<div class="size-14 rounded-full bg-gray-200 border-2 border-white shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmHTRdor5p52n9-g1CfT_rsIRkCYy4NFMJseFTMXzbvFWdRXmRL5uGYEZpkHuuCn6mUoYfef_auwrQmCkKn70K2oPRIdWCeFVf4NvyKfjIBdHD3aT9opog_4OH3T9_uXGCu9FEEVXOF2mOGXx-nSfi7kndEDrP0seHu-eWQosrAoaXZBweO-JjoEON01kNwZxJaI8dMfdIp3cEm7sJ1qB1WJondfIZne1fgljdm6oBnTcj0VvhPQhpuvHJgFxrsMB7bVPxlWOKGeY"); background-size: cover;'></div>
-<div>
-<p class="font-black text-sm text-[var(--dark)]">Chị Phương Thảo</p>
-<p class="text-xs text-gray-400 font-medium">Mẹ bỉm sữa, TP.HCM</p>
-</div>
-</div>
-</div>
-<div class="teal-gradient p-12 rounded-[60px] shadow-2xl text-white flex flex-col gap-8 lg:scale-105 z-10">
-<div class="flex gap-1">
-<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-white fill-1 text-xl">star</span>
-</div>
-<p class="leading-relaxed italic text-lg font-light">"Tôi là nam giới nhưng da rất nhạy cảm. Sản phẩm này thấm nhanh, không hề bết dính. Mùi thảo mộc cũng rất dễ chịu, không bị nồng như các loại khác."</p>
-<div class="flex items-center gap-5 pt-8 border-t border-white/20 mt-auto">
-<div class="size-14 rounded-full bg-white/20 border-2 border-white/30 shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCZj8OibaUukwBJ8TcIveF5BLlttRUtlCfFxazwv4ZBnQBokq4HTNDB_NNgB3a-20QG924acsn479ToQfCjEZq0i27bKncdY3l_cmXIkTNqEYqezwUdIeSV6VVtHpjc4N2r7yZvoq1F3zb0g_QH8-J_3bKaoLDJ1DzwtMhBMBnozSvw_Ubd_nstyYmVQLw3qw3zKr2s79bRb1QdTkDyXcSRwyJIk1ca1rBo6qnxADPtVe1cMLboiN5yFuf3O925gtAKe6j48oDNonc"); background-size: cover;'></div>
-<div>
-<p class="font-black text-sm">Anh Hoàng Nam</p>
-<p class="text-xs text-white/70 font-medium">Nhân viên văn phòng</p>
-</div>
-</div>
-</div>
-<div class="bg-white p-12 rounded-[60px] shadow-sm flex flex-col gap-8 hover:shadow-xl transition-all">
-<div class="flex gap-1">
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-<span class="material-symbols-outlined text-[var(--primary)] fill-1 text-xl">star</span>
-</div>
-<p class="text-gray-600 leading-relaxed italic text-lg font-light">"Giao hàng nhanh, đóng gói sang chảnh. Sản phẩm cầm rất chắc tay. Chất kem lỏng nhẹ, bôi lên da mát lịm. Cực kỳ hài lòng về chất lượng!"</p>
-<div class="flex items-center gap-5 pt-8 border-t border-gray-100 mt-auto">
-<div class="size-14 rounded-full bg-gray-200 border-2 border-white shadow-sm" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHUNNurYKy0AN5tJ-YNwHtt5Ixgx3nPPmcIK9FUCMUqw9NAwBxtTZeJuWNuS9a1HFGnPDwWwnfZ8PmK5uQqFb3xGxm26USBr_ofrJiuAwaB9a-OMUMvgsoXSV7T1Ld2rVLvCEK1bji_f-VZKpXEuiOYmx6Z-CK7cogNLnL1S_oTNSZ_67AYBgtxiRZ4qubiB1gaeJf9Q5LMeJnjAKB-wDLUvanQwm-ZN3AUhE6S5qnp0zB5vlsUQLEGp_SPzaD-aNQRXFmTnHM6xU"); background-size: cover;'></div>
-<div>
-<p class="font-black text-sm text-[var(--dark)]">Chị Diệu Linh</p>
-<p class="text-xs text-gray-400 font-medium">Nội trợ, Đà Nẵng</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-white">
-<div class="max-w-7xl mx-auto px-6">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-<div class="teal-gradient p-16 lg:p-24 rounded-[80px] text-white shadow-3xl">
-<h2 class="text-5xl font-bold mb-10 italic">Cam Kết Của Chúng Tôi</h2>
-<p class="text-xl opacity-90 mb-12 leading-relaxed font-light">
-                        Atomonde ra đời với sứ mệnh mang đến sự bình yên cho làn da. Chúng tôi cam kết minh bạch 100% thành phần và chỉ sử dụng những gì tốt nhất từ thiên nhiên.
-                    </p>
-<div class="grid grid-cols-2 gap-12">
-<div class="flex flex-col gap-3">
-<span class="text-5xl font-black">0%</span>
-<span class="text-[10px] uppercase tracking-[0.3em] font-black">Parabens &amp; Toxins</span>
-</div>
-<div class="flex flex-col gap-3">
-<span class="text-5xl font-black">Safe</span>
-<span class="text-[10px] uppercase tracking-[0.3em] font-black">For Newborns</span>
-</div>
-<div class="flex flex-col gap-3">
-<span class="text-5xl font-black">Test</span>
-<span class="text-[10px] uppercase tracking-[0.3em] font-black">Hypoallergenic</span>
-</div>
-<div class="flex flex-col gap-3">
-<span class="text-5xl font-black">Pure</span>
-<span class="text-[10px] uppercase tracking-[0.3em] font-black">EWG Green Grade</span>
-</div>
-</div>
-</div>
-<div>
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-10 block">CHỨNG NHẬN QUỐC TẾ</span>
-<h3 class="text-4xl lg:text-5xl font-bold mb-16 leading-tight">Được công nhận bởi các tổ chức uy tín hàng đầu</h3>
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-16 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">verified_user</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">FDA Approved</span>
-</div>
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">eco</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">Organic Cert</span>
-</div>
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">factory</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">GMP Standard</span>
-</div>
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">health_and_safety</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">Dermatest 5*</span>
-</div>
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">science</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">Cruelty Free</span>
-</div>
-<div class="flex flex-col items-center gap-5">
-<div class="size-24 rounded-3xl bg-gray-50 flex items-center justify-center border border-gray-100">
-<span class="material-symbols-outlined text-5xl text-[var(--dark)]">spa</span>
-</div>
-<span class="text-[11px] font-black uppercase tracking-widest text-center">EWG Green</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-[var(--cream)]" id="pricing">
-<div class="max-w-7xl mx-auto px-6">
-<div class="text-center mb-24">
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-6 block">LỰA CHỌN TỐI ƯU</span>
-<h2 class="text-5xl lg:text-7xl font-bold mb-8">Giải Pháp Cho Mọi Nhu Cầu</h2>
-<p class="text-gray-500 max-w-xl mx-auto text-lg font-light">Chọn gói sản phẩm phù hợp nhất để tối ưu chi phí và bảo vệ làn da cho cả gia đình.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
-<div class="bg-white p-16 rounded-[60px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all flex flex-col group">
-<h3 class="text-3xl font-bold mb-2">Combo Khởi Đầu</h3>
-<p class="text-gray-400 text-sm mb-10 font-medium">Cơ bản cho mẹ hoặc bé</p>
-<div class="mb-12">
-<span class="text-6xl font-black text-[var(--dark)]">499k</span>
-<span class="text-gray-400 font-bold ml-1">/tháng</span>
-</div>
-<ul class="space-y-6 mb-16 flex-grow">
-<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
-<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
-                            1 Kem dưỡng ẩm 200ml
-                        </li>
-<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
-<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
-                            1 Sữa tắm gội 2in1
-                        </li>
-<li class="flex items-center gap-4 text-[15px] text-gray-300 italic">
-<span class="material-symbols-outlined">cancel</span> 
-                            Miễn phí vận chuyển
-                        </li>
-</ul>
-<button class="w-full py-6 rounded-full border-2 border-[var(--primary)] text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:bg-[var(--primary)] hover:text-white transition-all">
-                        Đăng ký ngay
-                    </button>
-</div>
-<div class="teal-gradient p-16 rounded-[60px] shadow-3xl relative lg:scale-110 z-10 text-white flex flex-col group">
-<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-[var(--pink)] text-[var(--primary)] px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-2xl">Bán Chạy Nhất</div>
-<h3 class="text-3xl font-bold mb-2">Gói Gia Đình</h3>
-<p class="opacity-80 text-sm mb-10 font-medium">Bảo vệ toàn diện cho cả nhà</p>
-<div class="mb-12">
-<span class="text-6xl font-black">1.299k</span>
-<span class="opacity-70 font-bold ml-1">/tháng</span>
-</div>
-<ul class="space-y-6 mb-16 flex-grow">
-<li class="flex items-center gap-4 text-[15px] font-bold">
-<span class="material-symbols-outlined">check_circle</span> 
-                            Bộ 4 sản phẩm full-size
-                        </li>
-<li class="flex items-center gap-4 text-[15px] font-bold">
-<span class="material-symbols-outlined">check_circle</span> 
-                            2 Kem dưỡng &amp; 2 Sữa tắm
-                        </li>
-<li class="flex items-center gap-4 text-[15px] font-bold">
-<span class="material-symbols-outlined">check_circle</span> 
-                            Miễn phí giao hàng hỏa tốc
-                        </li>
-<li class="flex items-center gap-4 text-[15px] font-bold">
-<span class="material-symbols-outlined">check_circle</span> 
-                            Tư vấn da liễu 1:1 định kỳ
-                        </li>
-</ul>
-<button class="w-full py-6 rounded-full bg-white text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:shadow-[0_20px_50px_rgba(255,255,255,0.4)] transition-all">
-                        Sở Hữu Ngay
-                    </button>
-</div>
-<div class="bg-white p-16 rounded-[60px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all flex flex-col group">
-<h3 class="text-3xl font-bold mb-2">Gói Chuyên Sâu</h3>
-<p class="text-gray-400 text-sm mb-10 font-medium">Liệu trình cho da đặc biệt</p>
-<div class="mb-12">
-<span class="text-6xl font-black text-[var(--dark)]">2.499k</span>
-<span class="text-gray-400 font-bold ml-1">/tháng</span>
-</div>
-<ul class="space-y-6 mb-16 flex-grow">
-<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
-<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
-                            Đầy đủ 6 sản phẩm cao cấp
-                        </li>
-<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
-<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
-                            Hộp quà tặng sang trọng
-                        </li>
-<li class="flex items-center gap-4 text-[15px] text-gray-600 font-medium">
-<span class="material-symbols-outlined text-[var(--primary)]">check_circle</span> 
-                            Ưu tiên thử nghiệm hàng mới
-                        </li>
-</ul>
-<button class="w-full py-6 rounded-full border-2 border-[var(--primary)] text-[var(--primary)] font-black text-sm uppercase tracking-widest hover:bg-[var(--primary)] hover:text-white transition-all">
-                        Đăng ký ngay
-                    </button>
-</div>
-</div>
-</div>
-</section>
-<section class="py-32 bg-white" id="faq">
-<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-32 items-start">
-<div>
-<span class="text-[var(--primary)] font-black tracking-[0.4em] uppercase text-xs mb-8 block">HỎI ĐÁP PHỔ BIẾN</span>
-<h2 class="text-5xl lg:text-6xl font-bold mb-16">Những điều bạn quan tâm</h2>
-<div class="space-y-6">
-<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden" open="">
-<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
-<h4 class="font-bold text-xl pr-4">Sản phẩm có dùng được cho bé sơ sinh?</h4>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
-</summary>
-<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
-                            Hoàn toàn an toàn. Atomonde được thiết kế với nồng độ dưỡng chất phù hợp nhất cho làn da non nớt của trẻ sơ sinh ngay từ 0 ngày tuổi, đã qua kiểm nghiệm lâm sàng Dermatest khắt khe nhất.
-                        </div>
-</details>
-<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden">
-<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
-<h4 class="font-bold text-xl pr-4">Hạn sử dụng của sản phẩm là bao lâu?</h4>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
-</summary>
-<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
-                            Sản phẩm có thời hạn 3 năm kể từ ngày sản xuất và nên sử dụng tốt nhất trong vòng 12 tháng sau khi mở nắp để đảm bảo hoạt tính tối ưu của các thành phần tự nhiên.
-                        </div>
-</details>
-<details class="group bg-[var(--cream)] rounded-[40px] overflow-hidden">
-<summary class="flex items-center justify-between p-10 cursor-pointer list-none">
-<h4 class="font-bold text-xl pr-4">Tôi có thể kiểm tra hàng trước khi nhận?</h4>
-<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-[var(--primary)] font-black">expand_more</span>
-</summary>
-<div class="px-10 pb-10 text-gray-500 leading-relaxed text-lg font-light">
-                            Có, Atomonde khuyến khích khách hàng kiểm tra đầy đủ tem niêm phong, mã vạch chính hãng và tình trạng sản phẩm trước khi thanh toán cho đơn vị vận chuyển.
-                        </div>
-</details>
-</div>
-</div>
-<div class="relative">
-<div class="bg-[var(--dark)] p-12 lg:p-20 rounded-[80px] text-white shadow-[0_60px_100px_-20px_rgba(26,28,35,0.3)] relative z-10 border border-white/5">
-<h2 class="text-4xl lg:text-5xl font-bold mb-6">Tư Vấn Chuyên Sâu</h2>
-<p class="text-gray-400 mb-12 text-lg font-light">Để lại thông tin, đội ngũ bác sĩ của chúng tôi sẽ liên hệ tư vấn miễn phí trong 30 phút.</p>
-<form class="space-y-8">
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-<div>
-<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Họ và tên</label>
-<input class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="Nguyễn Văn A" type="text"/>
-</div>
-<div>
-<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Số điện thoại</label>
-<input class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="0901 234 567" type="tel"/>
-</div>
-</div>
-<div>
-<label class="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-500 mb-4">Tình trạng da hiện tại</label>
-<textarea class="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-5 text-white focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent outline-none transition-all placeholder:text-white/20" placeholder="Mô tả ngắn về tình trạng da của bé hoặc gia đình..." rows="5"></textarea>
-</div>
-<button class="w-full py-6 rounded-full teal-gradient text-white font-black text-lg uppercase tracking-widest shadow-2xl hover:shadow-[0_20px_50px_rgba(10,186,181,0.4)] transition-all active:scale-95">
-                            Gửi Yêu Cầu Tư Vấn
-                        </button>
-</form>
-</div>
-<div class="absolute -top-16 -right-16 w-64 h-64 bg-[var(--primary)] rounded-full blur-[120px] opacity-10"></div>
-<div class="absolute -bottom-16 -left-16 w-64 h-64 bg-[var(--pink)] rounded-full blur-[120px] opacity-10"></div>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-white py-32 border-t border-gray-50">
-<div class="max-w-7xl mx-auto px-6">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-20 mb-24">
-<div class="col-span-1 md:col-span-1">
-<div class="flex items-center gap-3 mb-10">
-<div class="size-10 bg-[var(--primary)] rounded-xl flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-2xl">eco</span>
-</div>
-<span class="text-2xl font-black tracking-tighter text-[var(--dark)]">Atomonde</span>
-</div>
-<p class="text-[15px] text-gray-400 leading-relaxed mb-10 font-light">Thương hiệu dược mỹ phẩm hàng đầu Hàn Quốc với triết lý: "Gìn giữ vẻ đẹp tự nhiên bằng sự tử tế và khoa học".</p>
-<div class="flex gap-6">
-<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
-<span class="material-symbols-outlined text-xl">public</span>
-</a>
-<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
-<span class="material-symbols-outlined text-xl">photo_camera</span>
-</a>
-<a class="size-12 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 hover:bg-[var(--primary)] hover:text-white transition-all shadow-sm" href="#">
-<span class="material-symbols-outlined text-xl">movie</span>
-</a>
-</div>
-</div>
-<div>
-<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Thương Hiệu</h5>
-<ul class="space-y-5 text-[15px] text-gray-500 font-medium">
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Về chúng tôi</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Hệ thống phân phối</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Câu chuyện Atomonde</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chứng nhận quốc tế</a></li>
-</ul>
-</div>
-<div>
-<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Hỗ Trợ</h5>
-<ul class="space-y-5 text-[15px] text-gray-500 font-medium">
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chính sách vận chuyển</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Chính sách đổi trả</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Bảo mật thông tin</a></li>
-<li><a class="hover:text-[var(--primary)] transition-colors" href="#">Hỏi đáp &amp; Liên hệ</a></li>
-</ul>
-</div>
-<div>
-<h5 class="font-black text-sm uppercase tracking-[0.2em] text-[var(--dark)] mb-10">Newsletter</h5>
-<p class="text-[15px] text-gray-500 mb-8 font-light">Đăng ký để nhận bí quyết chăm sóc da khoa học và các ưu đãi mới nhất.</p>
-<div class="flex bg-gray-50 rounded-full p-2 border border-gray-100 shadow-inner">
-<input class="bg-transparent border-none focus:ring-0 px-6 py-3 text-sm flex-grow placeholder:text-gray-400" placeholder="Email của bạn..." type="email"/>
-<button class="bg-[var(--dark)] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[var(--primary)] transition-all">Gửi</button>
-</div>
-</div>
-</div>
-<div class="pt-12 border-t border-gray-50 flex flex-col md:flex-row justify-between items-center gap-8">
-<p class="text-xs text-gray-400 font-black uppercase tracking-[0.2em]">© 2024 Atomonde Vietnam. All rights reserved.</p>
-<div class="flex items-center gap-10 opacity-40 grayscale">
-<div class="h-8 w-14 bg-gray-200 rounded" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWo8xq8G-O5zC0RtV4mXMq8CpkngOwsElzNP01vFatV931kfakx00qbqIiosmhS_0W2WfBtT-H_3y2xF9CiPOaRwwMJIHsAce26YQMegG8I3XNVhOTstWRJ5u4I8YsCvz3SGGScEPU7uTTy-s3Rmk9Tlpq9fwg0Eh-YHwdhHlpvwviwK5PX1WUn_-_GYUqlPy1HcGNV_na841oRo0Az6fMvIeQfWvIg9aj3qxMqTt3qAyDrUClQzDSK0gZqL4aU6OCnbrmPQY9HJA"); background-size: contain; background-repeat: no-repeat; background-position: center;'></div>
-<div class="h-8 w-14 bg-gray-200 rounded" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCUQfZkODBbLsQ8X1xqYJ0CRY06uvOmaIs8uJRNB4cYTmopFB_3KILOf68z_VmBwINynNRJeWF3JYRZTIx-WU_pbHh9E026BVlzRmRO02nxyy_WsxsMSax4nRCZBA0BoKXPPtBTWIuaVlXbawHil8sll3VJrJMN7lkUpg6J1KlLWJPn0U0XXBMBtPk_UgxPNXioQRWnztlHBvQGo9AmhUv4SWvafhjnEk6pk77Uql_7D5S8_q-LEb9TwmtIt5PqkoRs8W6PGY4kKi0"); background-size: contain; background-repeat: no-repeat; background-position: center;'></div>
-</div>
-</div>
-</div>
-</footer>
+      </div>
+      <div class="aspect-video bg-black">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/hG_acKsAkDg"
+          title="ATOMONDE Care Routine" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
-<script>
-// Scroll to top button functionality
-const scrollTopBtn = document.getElementById('scrollTop');
-const scrollThreshold = 300;
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-xl border-b border-[rgba(36,102,93,.10)]">
+    <nav class="max-w-7xl mx-auto px-5 h-16 md:h-20 flex items-center justify-between">
+      <a class="flex items-center gap-3" href="#hero">
+        <div class="size-10 md:size-11 rounded-2xl overflow-hidden shadow-lg shadow-[rgba(36,102,93,.20)]">
+          <img src="images/logo.jpg" alt="ATOMONDE logo" class="w-full h-full object-cover"/>
+        </div>
+        <div class="leading-tight">
+          <div class="text-lg md:text-xl font-black tracking-tight text-[var(--dark)]">ATOMONDE</div>
+          <div class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[var(--accent)]">The COS Korea</div>
+        </div>
+      </a>
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > scrollThreshold) {
-        scrollTopBtn.classList.add('show');
-    } else {
-        scrollTopBtn.classList.remove('show');
-    }
-});
+      <div class="hidden lg:flex items-center gap-10">
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#about" data-i18n="nav_about">About</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#why" data-i18n="nav_why">Why Us</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#certifications" data-i18n="nav_proof">Proof</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#products" data-i18n="nav_products">Products</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#reviews" data-i18n="nav_reviews">Reviews</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#consult" data-i18n="nav_consult">Consult</a>
+        <a class="text-sm font-bold hover:text-[var(--primary)] transition" href="#faq" data-i18n="nav_faq">FAQ</a>
+      </div>
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      <div class="flex items-center gap-3">
+        <!-- Language toggle -->
+        <div class="hidden sm:flex items-center rounded-full border border-[rgba(36,102,93,.16)] bg-white px-2 py-1">
+          <button id="langEN" class="px-3 py-2 rounded-full text-xs font-black brand-gradient text-white">EN</button>
+          <button id="langKR" class="px-3 py-2 rounded-full text-xs font-black text-[var(--dark)]">KR</button>
+          <button id="langVI" class="px-3 py-2 rounded-full text-xs font-black text-[var(--dark)]">VI</button>
+        </div>
+
+        <button id="consultBtn" type="button"
+          class="px-5 md:px-7 py-3 rounded-full text-white font-extrabold text-xs md:text-sm brand-gradient soft-shadow hover:opacity-95 active:scale-95 transition"
+          data-i18n="cta_consult">
+          Get Consultation
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-16 md:pt-20">
+    <!-- HERO -->
+    <section id="hero" class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(139,193,184,.35),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(84,137,129,.22),transparent_45%)]"></div>
+
+      <div class="max-w-7xl mx-auto px-5 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
+        <div>
+          <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/80 rounded-full border border-[rgba(36,102,93,.12)] mb-8">
+            <i class="fa-solid fa-shield-heart text-[var(--primary)]"></i>
+            <span class="text-[11px] font-black uppercase tracking-[0.22em] text-[var(--dark)]" data-i18n="hero_badge">Skincare for the whole family</span>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl lg:text-[74px] leading-[1.02] mb-6">
+            <span data-i18n="hero_h1a">Natural care,</span><br/>
+            <span class="text-gradient italic font-normal" data-i18n="hero_h1b">built for daily use</span>
+          </h1>
+
+          <p class="text-[15px] md:text-lg text-[rgba(44,74,84,.72)] leading-relaxed max-w-xl mb-10" data-i18n="hero_p">
+            Developed by The COS Korea, ATOMONDE focuses on gentle daily routines, comfortable textures, and family-friendly assortment from head to toe.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="#products"
+              class="inline-flex items-center justify-center px-8 py-4 rounded-full font-extrabold text-sm text-white brand-gradient soft-shadow hover:opacity-95 transition"
+              data-i18n="cta_view_products">
+              View products
+            </a>
+            <button id="playVideoBtn" type="button"
+              class="inline-flex items-center gap-2 px-7 py-4 rounded-full font-extrabold text-sm border-2 border-[var(--primary)] text-[var(--primary)] bg-white hover:bg-[var(--primary)] hover:text-white transition">
+              <i class="fa-solid fa-circle-play"></i> <span data-i18n="cta_watch_routine">Watch routine</span>
+            </button>
+          </div>
+
+          <div class="mt-10 grid grid-cols-3 gap-6 max-w-xl">
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-2xl font-black text-[var(--primary)]" data-i18n="stat_1_a">Family</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="stat_1_b">head-to-toe</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-2xl font-black text-[var(--primary)]" data-i18n="stat_2_a">Daily</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="stat_2_b">routine-first</div>
+            </div>
+            <div class="glass-card rounded-2xl p-4">
+              <div class="text-2xl font-black text-[var(--primary)]" data-i18n="stat_3_a">KR</div>
+              <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="stat_3_b">brand origin</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- hero visual + promo countdown -->
+        <div class="relative">
+          <div class="aspect-[4/5] rounded-[34px] overflow-hidden soft-shadow bg-[var(--mint)] border border-[rgba(36,102,93,.12)]">
+            <img src="images/p01.png" alt="ATOMONDE visual" class="w-full h-full object-cover"/>
+          </div>
+
+          <div class="absolute -bottom-6 -left-6 w-[92%] glass-card rounded-[28px] p-6 soft-shadow">
+            <div class="flex items-start justify-between gap-4">
+              <div class="min-w-0">
+                <div class="text-[11px] font-black uppercase tracking-[0.22em] text-[rgba(44,74,84,.55)]" data-i18n="promo_tag">Spring promo</div>
+                <div class="text-xl font-bold text-[var(--dark)] mt-1" data-i18n="promo_title">New season, routine refresh</div>
+                <div class="text-sm text-[rgba(44,74,84,.70)] mt-1" data-i18n="promo_sub">Limited-time offer ends soon.</div>
+
+                <div class="mt-4 grid grid-cols-4 gap-3">
+                  <div class="rounded-2xl bg-white border border-[rgba(36,102,93,.12)] p-3 text-center">
+                    <div id="dd" class="text-xl font-black text-[var(--primary)]">00</div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="t_days">Days</div>
+                  </div>
+                  <div class="rounded-2xl bg-white border border-[rgba(36,102,93,.12)] p-3 text-center">
+                    <div id="hh" class="text-xl font-black text-[var(--primary)]">00</div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="t_hours">Hours</div>
+                  </div>
+                  <div class="rounded-2xl bg-white border border-[rgba(36,102,93,.12)] p-3 text-center">
+                    <div id="mm" class="text-xl font-black text-[var(--primary)]">00</div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="t_mins">Mins</div>
+                  </div>
+                  <div class="rounded-2xl bg-white border border-[rgba(36,102,93,.12)] p-3 text-center">
+                    <div id="ss" class="text-xl font-black text-[var(--primary)]">00</div>
+                    <div class="text-[10px] font-black uppercase tracking-widest text-[rgba(44,74,84,.55)]" data-i18n="t_secs">Secs</div>
+                  </div>
+                </div>
+              </div>
+
+              <a href="#consult" class="shrink-0 px-5 py-3 rounded-full text-white font-extrabold text-xs brand-gradient hover:opacity-95 transition"
+                 data-i18n="promo_btn">
+                Get offer
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="glass-card rounded-[28px] p-8 md:p-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-4" data-i18n="about_tag">brand story</div>
+          <h2 class="text-3xl md:text-4xl leading-tight mb-5" data-i18n="about_title">ATOMONDE — family routine skincare</h2>
+          <p class="text-[rgba(44,74,84,.75)] leading-relaxed" data-i18n="about_p">
+            ATOMONDE is designed as a comfort-first daily routine. The assortment covers baby, kids, and adults with head-to-toe options, developed under The COS Korea’s “natural, unspoiled skin” philosophy.
+          </p>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="rounded-2xl border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <div class="font-black text-[var(--dark)]" data-i18n="about_box1_title">Designed for daily use</div>
+              <ul class="mt-3 space-y-2 text-sm text-[rgba(44,74,84,.75)]">
+                <li data-i18n="about_box1_a">• gentle routine-driven lineup</li>
+                <li data-i18n="about_box1_b">• light, comfortable textures</li>
+                <li data-i18n="about_box1_c">• consistent family assortment</li>
+              </ul>
+            </div>
+            <div class="rounded-2xl border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <div class="font-black text-[var(--dark)]" data-i18n="about_box2_title">Brand values</div>
+              <ul class="mt-3 space-y-2 text-sm text-[rgba(44,74,84,.75)]">
+                <li data-i18n="about_box2_a">• good people, good product</li>
+                <li data-i18n="about_box2_b">• customer-first responsiveness</li>
+                <li data-i18n="about_box2_c">• long-term routine mindset</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-[28px] p-8 md:p-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-4" data-i18n="about2_tag">what to expect</div>
+          <h3 class="text-2xl md:text-3xl mb-4" data-i18n="about2_title">What you get on this page</h3>
+          <div class="text-[rgba(44,74,84,.78)] leading-relaxed space-y-3 text-sm">
+            <p data-i18n="about2_p1">• A clean product catalog that feels premium and easy to browse.</p>
+            <p data-i18n="about2_p2">• Proof section (certifications + KR patents) with clear naming under each item.</p>
+            <p data-i18n="about2_p3">• Consultation area with two modes: form or direct contact + map.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="py-16 md:py-24 bg-[var(--mint)]">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="why_tag">why choose us</div>
+          <h2 class="text-3xl md:text-5xl mb-4" data-i18n="why_title">Why The COS Korea</h2>
+          <p class="text-[rgba(44,74,84,.72)] max-w-3xl mx-auto leading-relaxed" data-i18n="why_p">
+            We focus on a routine-first lineup, evidence-forward communication, and partnership readiness—so customers feel confident and distributors can scale reliably.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card rounded-[24px] p-7 soft-shadow">
+            <div class="size-12 rounded-2xl brand-gradient text-white grid place-items-center mb-4">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div class="text-xl font-bold mb-2" data-i18n="why_1_t">Routine-first assortment</div>
+            <div class="text-sm text-[rgba(44,74,84,.75)] leading-relaxed" data-i18n="why_1_p">
+              Head-to-toe options across baby, kids, and adults make routine building simple and consistent.
+            </div>
+          </div>
+
+          <div class="glass-card rounded-[24px] p-7 soft-shadow">
+            <div class="size-12 rounded-2xl brand-gradient text-white grid place-items-center mb-4">
+              <i class="fa-solid fa-shield"></i>
+            </div>
+            <div class="text-xl font-bold mb-2" data-i18n="why_2_t">Evidence-forward trust</div>
+            <div class="text-sm text-[rgba(44,74,84,.75)] leading-relaxed" data-i18n="why_2_p">
+              Clear proof items (certifications + patents) displayed with names, so trust is fast and verifiable.
+            </div>
+          </div>
+
+          <div class="glass-card rounded-[24px] p-7 soft-shadow">
+            <div class="size-12 rounded-2xl brand-gradient text-white grid place-items-center mb-4">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div class="text-xl font-bold mb-2" data-i18n="why_3_t">Partnership readiness</div>
+            <div class="text-sm text-[rgba(44,74,84,.75)] leading-relaxed" data-i18n="why_3_p">
+              OEM & ODM-friendly formats and scalable SKUs—ready for distribution and business collaboration.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS (centered header + title case labels) -->
+    <section id="certifications" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="cert_tag">proof</div>
+          <h2 class="text-3xl md:text-5xl" data-i18n="cert_title">Certifications & Patents</h2>
+          <p class="max-w-2xl mx-auto mt-4 text-[rgba(44,74,84,.72)] leading-relaxed" data-i18n="cert_p"></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_busan_successful_startups.png" alt="Awards From Busan City — Successful Start-ups" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_01_t">Awards From Busan City — “Successful Start-ups”</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_busan_million_club.png" alt="Busan City Million Club — Representative Start-up Company" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_02_t">Busan City Million Club — “Representative Start-up Company”</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_best_product_2018_11_derma_stick_balm.png" alt="Best Product Of This Month (Nov 2018) — Derma Stick Balm" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_03_t">Best Product Of This Month (Nov 2018) — “Derma Stick Balm”</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_moel_cosmetics_industry_job_creation.png" alt="Business Partnership Agreement — Silla University" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_04_t">Business Partnership Agreement — Silla University</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_busan_local_economy_revitalization.png" alt="Awards From MOEL — Development Of Cosmetics Industry & Job Creation" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_05_t">Awards From MOEL — Development Of Cosmetics Industry & Job Creation</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/award_motie_korea_sale_festa.png" alt="Awards From Busan City — Revitalization Of The Local Economy" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_06_t">Awards From Busan City — Revitalization Of The Local Economy</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/partner_silla_university_mou.png" alt="Awards From MOTIE — Successful Hosting Of Korea Sale Festa" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_07_t">Awards From MOTIE — Successful Hosting Of Korea Sale Festa</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/partner_daegu_haany_university_mou.png" alt="Business Partnership Agreement — Daegu Haany University" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_08_t">Business Partnership Agreement — Daegu Haany University</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/partner_ceo_oh_dhu_ic_center_director.png" alt="CEO Oh — Appointment Of Daegu Haany University IC Center Director" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_09_t">CEO Oh — Appointment Of Daegu Haany University IC Center Director</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/patent_kr_10-1379460.png" alt="Kr Patent No. 10-1379460" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_10_t">Kr Patent No. 10-1379460</div>
+            </figcaption>
+          </figure>
+
+          <figure class="cert-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col">
+            <div class="bg-white p-4">
+              <div class="w-full aspect-[2/3] rounded-2xl border border-[rgba(36,102,93,.12)] overflow-hidden bg-white">
+                <img src="images/patent_kr_10-2732125.png" alt="Kr Patent No. 10-2732125" class="cert-img"/>
+              </div>
+            </div>
+            <figcaption class="px-5 pb-5 mt-auto">
+              <div class="font-black text-[var(--dark)] text-sm" data-i18n="cert_11_t">Kr Patent No. 10-2732125</div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" class="py-16 md:py-24 bg-[var(--mint)]">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="prod_tag">products (14)</div>
+          <h2 class="text-3xl md:text-5xl mb-4" data-i18n="prod_title">Explore the assortment</h2>
+          <p class="text-[rgba(44,74,84,.72)] max-w-2xl mx-auto leading-relaxed" data-i18n="prod_p">
+            Browse categories. Each card stays aligned with consistent height and unified actions.
+          </p>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="all" data-i18n="f_all">All</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Baby Care">Baby Care</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Bath Supplies">Bath Supplies</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Skin Care">Skin Care</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Other Protective items">Other Protective items</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Veterinary Instrument">Veterinary Instrument</button>
+          <button class="filter-btn px-4 py-2 rounded-full text-sm font-extrabold border border-[rgba(36,102,93,.18)] bg-white hover:bg-[var(--mint)]" data-filter="Newest"><i class="fa-solid fa-sparkles"></i> <span data-i18n="f_new">Newest</span></button>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- 01 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Newest Bath Supplies">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p01.png" alt="Seaweed Kids Shampoo conditioner bodywash 1000ml" class="w-full h-full object-cover"/>
+              <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white brand-gradient" data-i18n="badge_new">Newest</span>
+
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_01" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p01_t">Seaweed Kids Shampoo · Conditioner · Bodywash</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p01_d">All-in-one daily cleansing routine. 1000ml. OEM&ODM friendly.</p>
+
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Bath Supplies</span>
+                <a href="LINK_PRODUCT_01" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Baby Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p02.jpg" alt="Derma Hair Gel 160g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_02" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p02_t">Derma Hair Gel 160g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p02_d">Natural-looking styling feel for baby & kids. Clean finish. OEM&ODM.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Baby Care</span>
+                <a href="LINK_PRODUCT_02" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Skin Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p03.png" alt="Derma Lotion 200g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_03" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p03_t">Derma Lotion 200g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p03_d">Daily moisturizing emulsion for face & body routine, balanced and comfortable.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Skin Care</span>
+                <a href="LINK_PRODUCT_03" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Skin Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p04.png" alt="Derma Cream 200g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_04" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p04_t">Derma Cream 200g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p04_d">Deep moisture support for daily face & body care, with rich yet wearable feel.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Skin Care</span>
+                <a href="LINK_PRODUCT_04" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Other Protective items">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p05.png" alt="Phyton Stick Balm 16.5g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_05" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p05_t">Phyton Stick Balm 16.5g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p05_d">Stick format for on-the-go routine on dryness-prone areas.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Other Protective items</span>
+                <a href="LINK_PRODUCT_05" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 06 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Bath Supplies">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p06.png" alt="Kids&Daddy Hygiene Cleanser for men" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_06" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p06_t">Kids & Daddy Hygiene Cleanser (Men)</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p06_d">Daily hygiene cleanser designed for comfort and freshness in routine use.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Bath Supplies</span>
+                <a href="LINK_PRODUCT_06" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 07 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Bath Supplies Baby Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p07.jpg" alt="Derma Bath & Shampoo 300g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_07" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p07_t">Derma Bath & Shampoo 300g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p07_d">Top-to-toe wash for simplified routines. Comfortable daily cleansing.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Baby Care</span>
+                <a href="LINK_PRODUCT_07" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 08 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Bath Supplies">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p08.jpg" alt="Kids & Moms Feminine Cleanser 400g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_08" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p08_t">Kids & Moms Feminine Cleanser 400g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p08_d">Gentle intimate wash option built for routine comfort and freshness.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Bath Supplies</span>
+                <a href="LINK_PRODUCT_08" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 09 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Skin Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p09.jpg" alt="Face Wash Foam 100g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_09" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p09_t">Face Wash Foam 100g (Junior)</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p09_d">Mild cleansing step with a comfortable finish for daily face routine.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Skin Care</span>
+                <a href="LINK_PRODUCT_09" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Bath Supplies">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p10.png" alt="2 in 1 Scalp Cooling Shampoo Conditioner 500ml" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_10" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p10_t">2-in-1 Scalp Cooling Shampoo + Conditioner 500ml</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p10_d">Refreshing daily hair routine. Convenient all-in-one format. OEM&ODM.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Bath Supplies</span>
+                <a href="LINK_PRODUCT_10" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 11 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Skin Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p11.png" alt="A.Penguin Calming Kids Lotion 200g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_11" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p11_t">A.Penguin Calming Kids Lotion 200g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p11_d">Light daily moisturizer for face & body routine with a calm finish.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Skin Care</span>
+                <a href="LINK_PRODUCT_11" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 12 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Skin Care">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p12.png" alt="A.Penguin Kids Water Cream 200g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_12" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p12_t">A.Penguin Kids Water Cream 200g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p12_d">Weightless hydration style that layers well in everyday routines.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Skin Care</span>
+                <a href="LINK_PRODUCT_12" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 13 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Veterinary Instrument">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p13.jpg" alt="A dog of Flanders Pet Shampoo set" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_13" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p13_t">A Dog of Flanders Set (Pet Care)</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p13_d">Pet shampoo + silky detangler mist set for routine grooming.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Veterinary Instrument</span>
+                <a href="LINK_PRODUCT_13" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 14 -->
+          <article class="product-card bg-white rounded-[24px] overflow-hidden border border-[rgba(36,102,93,.12)] flex flex-col"
+            data-category="Other Protective items">
+            <div class="product-media relative aspect-[4/3] bg-[var(--mint)]">
+              <img src="images/p14.png" alt="A.Penguin Hot Pack 100g" class="w-full h-full object-cover"/>
+              <div class="quick-actions absolute inset-x-3 bottom-3 flex gap-2">
+                <a href="LINK_PRODUCT_14" class="flex-1 px-4 py-2 rounded-full text-xs font-black text-white brand-gradient text-center" data-i18n="btn_details">Details</a>
+                <a href="#consult" class="px-4 py-2 rounded-full text-xs font-black border border-white/40 bg-white/90" data-i18n="btn_consult">Consult</a>
+              </div>
+            </div>
+            <div class="p-5 flex flex-col min-h-[210px]">
+              <h3 class="font-bold text-lg line-clamp-2" data-i18n="p14_t">A.Penguin Hot Pack 100g</h3>
+              <p class="text-sm text-[rgba(44,74,84,.72)] mt-2 line-clamp-3" data-i18n="p14_d">Air-activated hand warmers for seasonal comfort. OEM&ODM.</p>
+              <div class="mt-auto pt-4 flex items-center justify-between">
+                <span class="text-[var(--primary)] font-extrabold text-sm">Other Protective items</span>
+                <a href="LINK_PRODUCT_14" class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="btn_details">Details</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5">
+        <div class="text-center mb-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="rev_tag">voice of customers</div>
+          <h2 class="text-3xl md:text-5xl mb-4" data-i18n="rev_title">What customers say</h2>
+          <p class="text-[rgba(44,74,84,.72)] max-w-2xl mx-auto leading-relaxed" data-i18n="rev_p">
+            Short, experience-based comments (kept neutral and routine-focused).
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card rounded-[24px] p-7 soft-shadow flex flex-col">
+            <div class="flex gap-1 text-[var(--primary)]">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="mt-4 text-[rgba(44,74,84,.78)] leading-relaxed" data-i18n="rev_1">
+              “The texture feels comfortable and easy to use every day. The routine is simple and the finish is clean.”
+            </p>
+            <div class="mt-auto pt-6 border-t border-[rgba(36,102,93,.12)]">
+              <div class="font-black" data-i18n="rev_1_n">Minji K.</div>
+              <div class="text-xs text-[rgba(44,74,84,.55)]" data-i18n="rev_1_r">Family routine buyer</div>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-[24px] p-7 soft-shadow flex flex-col">
+            <div class="flex gap-1 text-[var(--primary)]">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="mt-4 text-[rgba(44,74,84,.78)] leading-relaxed" data-i18n="rev_2">
+              “I like that there are multiple categories (wash, lotion, cream) so we can build a consistent routine.”
+            </p>
+            <div class="mt-auto pt-6 border-t border-[rgba(36,102,93,.12)]">
+              <div class="font-black" data-i18n="rev_2_n">Daniel H.</div>
+              <div class="text-xs text-[rgba(44,74,84,.55)]" data-i18n="rev_2_r">Office worker</div>
+            </div>
+          </div>
+
+          <div class="glass-card rounded-[24px] p-7 soft-shadow flex flex-col">
+            <div class="flex gap-1 text-[var(--primary)]">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="mt-4 text-[rgba(44,74,84,.78)] leading-relaxed" data-i18n="rev_3">
+              “Packaging looks premium and delivery was smooth. The products feel like a careful, routine-first brand.”
+            </p>
+            <div class="mt-auto pt-6 border-t border-[rgba(36,102,93,.12)]">
+              <div class="font-black" data-i18n="rev_3_n">Soojin P.</div>
+              <div class="text-xs text-[rgba(44,74,84,.55)]" data-i18n="rev_3_r">Home care enthusiast</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSULT (fix map: absolute embed URL, no "placeholder" text shown) -->
+    <section id="consult" class="py-16 md:py-24 bg-[var(--mint)]">
+      <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div class="glass-card rounded-[28px] p-8 md:p-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="con_tag">consult</div>
+          <h2 class="text-3xl md:text-4xl mb-4" data-i18n="con_title">Get consultation by needs</h2>
+          <p class="text-[rgba(44,74,84,.74)] leading-relaxed" data-i18n="con_p"></p>
+
+          <div class="mt-6 grid gap-4">
+            <div class="rounded-2xl bg-white border border-[rgba(36,102,93,.12)] p-5">
+              <div class="font-black" data-i18n="con_box1_t">You’ll receive</div>
+              <ul class="mt-2 text-sm text-[rgba(44,74,84,.75)] space-y-1">
+                <li data-i18n="con_box1_a">• routine suggestions by category</li>
+                <li data-i18n="con_box1_b">• recommended SKUs to start with</li>
+                <li data-i18n="con_box1_c">• basic how-to-use guidance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-[28px] p-6 md:p-8">
+          <div class="flex items-center justify-between gap-4 mb-5">
+            <h3 class="text-2xl font-bold" data-i18n="contact_title">Contact</h3>
+            <div class="inline-flex bg-white rounded-full border border-[rgba(36,102,93,.12)] p-1">
+              <button class="tab-btn px-4 py-2 rounded-full text-xs font-black" data-tab="form" data-i18n="tab_form">Form</button>
+              <button class="tab-btn px-4 py-2 rounded-full text-xs font-black" data-tab="direct" data-i18n="tab_direct">Direct</button>
+            </div>
+          </div>
+
+          <div id="tab-form" class="tab-panel">
+            <form id="consultForm" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-[11px] font-black uppercase tracking-[0.2em] text-[rgba(44,74,84,.60)] mb-2" data-i18n="lab_name">Full name</label>
+                  <input class="w-full rounded-2xl border-[rgba(36,102,93,.18)] focus:border-[var(--primary)] focus:ring-[var(--primary)]"
+                    placeholder="John Doe" type="text" required/>
+                </div>
+                <div>
+                  <label class="block text-[11px] font-black uppercase tracking-[0.2em] text-[rgba(44,74,84,.60)] mb-2" data-i18n="lab_phone">Phone</label>
+                  <input class="w-full rounded-2xl border-[rgba(36,102,93,.18)] focus:border-[var(--primary)] focus:ring-[var(--primary)]"
+                    placeholder="+84 ..." type="tel" required/>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-black uppercase tracking-[0.2em] text-[rgba(44,74,84,.60)] mb-2" data-i18n="lab_need">Need</label>
+                <select class="w-full rounded-2xl border-[rgba(36,102,93,.18)] focus:border-[var(--primary)] focus:ring-[var(--primary)]">
+                  <option>Baby Care</option>
+                  <option>Bath Supplies</option>
+                  <option>Skin Care</option>
+                  <option>Other Protective items</option>
+                  <option>Veterinary Instrument</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-black uppercase tracking-[0.2em] text-[rgba(44,74,84,.60)] mb-2" data-i18n="lab_note">Message</label>
+                <textarea class="w-full rounded-2xl border-[rgba(36,102,93,.18)] focus:border-[var(--primary)] focus:ring-[var(--primary)]"
+                  rows="4" data-i18n-ph="ph_msg" placeholder="Tell us your preferred category and product type..."></textarea>
+              </div>
+
+              <button type="submit"
+                class="w-full py-4 rounded-full text-white font-black brand-gradient soft-shadow hover:opacity-95 active:scale-[0.99] transition"
+                data-i18n="btn_submit">
+                Send request
+              </button>
+            </form>
+          </div>
+
+          <div id="tab-direct" class="tab-panel hidden">
+            <div class="rounded-2xl border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <div class="font-black text-[var(--dark)]">The COS Korea</div>
+              <div class="mt-2 text-sm text-[rgba(44,74,84,.80)] space-y-1">
+                <div><span class="font-extrabold">Tel:</span> 82-701470018</div>
+                <div><span class="font-extrabold">Fax:</span> 82-518083320</div>
+                <div class="pt-2"><span class="font-extrabold">Address:</span><br/>
+                  25 Nakdongbuk-ro 102beonga-gil, Gangseo-gu, Busan (46706)
+                </div>
+              </div>
+              <div class="mt-4 flex flex-wrap gap-3">
+                <a class="px-4 py-2 rounded-full text-xs font-black text-white brand-gradient" href="LINK_WEBSITE" target="_blank" rel="noopener" data-i18n="link_web">Website</a>
+                <a class="px-4 py-2 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" href="LINK_SOCIAL" target="_blank" rel="noopener" data-i18n="link_social">Social</a>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl overflow-hidden border border-[rgba(36,102,93,.12)] bg-white">
+              <!-- FIX: Use an absolute Google Maps embed URL -->
+              <iframe
+                title="Google Map"
+                class="w-full h-[260px]"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=25%20Nakdongbuk-ro%20102beonga-gil%2C%20Gangseo-gu%2C%20Busan%2046706&output=embed">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="faq_tag">faq</div>
+          <h2 class="text-3xl md:text-5xl mb-6" data-i18n="faq_title">Quick answers</h2>
+
+          <div class="space-y-4">
+            <details class="rounded-[18px] border border-[rgba(36,102,93,.12)] bg-white p-5" open>
+              <summary class="cursor-pointer font-black text-[var(--dark)] flex items-center justify-between">
+                <span data-i18n="faq_q1">How do I choose the right product category?</span>
+                <i class="fa-solid fa-chevron-down text-[var(--primary)]"></i>
+              </summary>
+              <div class="mt-3 text-sm text-[rgba(44,74,84,.76)] leading-relaxed" data-i18n="faq_a1">
+                Start with your routine step: wash/cleanse → moisturize (lotion/cream). Then select the category (baby, skin care, bath supplies).
+              </div>
+            </details>
+
+            <details class="rounded-[18px] border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <summary class="cursor-pointer font-black text-[var(--dark)] flex items-center justify-between">
+                <span data-i18n="faq_q2">Where can I see certifications and patents?</span>
+                <i class="fa-solid fa-chevron-down text-[var(--primary)]"></i>
+              </summary>
+              <div class="mt-3 text-sm text-[rgba(44,74,84,.76)] leading-relaxed" data-i18n="faq_a2">
+                Go to the Proof section. Each item is displayed with its name and image (fit mode, not cropped).
+              </div>
+            </details>
+
+            <details class="rounded-[18px] border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <summary class="cursor-pointer font-black text-[var(--dark)] flex items-center justify-between">
+                <span data-i18n="faq_q3">Can I contact directly instead of filling the form?</span>
+                <i class="fa-solid fa-chevron-down text-[var(--primary)]"></i>
+              </summary>
+              <div class="mt-3 text-sm text-[rgba(44,74,84,.76)] leading-relaxed" data-i18n="faq_a3">
+                Yes. In the Consult section, switch to the Direct tab to see contact details and the map.
+              </div>
+            </details>
+
+            <details class="rounded-[18px] border border-[rgba(36,102,93,.12)] bg-white p-5">
+              <summary class="cursor-pointer font-black text-[var(--dark)] flex items-center justify-between">
+                <span data-i18n="faq_q4">Do “Details” links work now?</span>
+                <i class="fa-solid fa-chevron-down text-[var(--primary)]"></i>
+              </summary>
+              <div class="mt-3 text-sm text-[rgba(44,74,84,.76)] leading-relaxed" data-i18n="faq_a4">
+                Replace LINK_PRODUCT_01 … LINK_PRODUCT_14 with your real product URLs later.
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="glass-card rounded-[28px] p-8 md:p-10">
+          <div class="text-xs font-black uppercase tracking-[0.35em] text-[var(--accent)] mb-3" data-i18n="faq_cta_tag">next</div>
+          <h3 class="text-2xl md:text-3xl mb-4" data-i18n="faq_cta_title">Want to receive more benefits?</h3>
+          <p class="text-[rgba(44,74,84,.78)] leading-relaxed mb-6" data-i18n="faq_cta_p"></p>
+          <div class="flex gap-3">
+            <a href="#certifications" class="px-5 py-3 rounded-full text-xs font-black text-white brand-gradient" data-i18n="faq_cta_btn1">View proof</a>
+            <a href="#consult" class="px-5 py-3 rounded-full text-xs font-black border border-[rgba(36,102,93,.22)]" data-i18n="faq_cta_btn2">Get consultation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white">
+    <div class="max-w-7xl mx-auto px-5 py-14 border-b border-white/10">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-10 items-start">
+        <div class="lg:col-span-1">
+          <div class="text-2xl font-black tracking-tight">The COS Korea</div>
+          <div class="mt-4 text-sm text-white/70 leading-relaxed">
+            CEO : Sang-tae Oh<br/>
+            Tel : 82-701470018 &nbsp;/&nbsp; Fax : 82-518083320<br/>
+            Address : 25 Nakdongbuk-ro 102beonga-gil, Gangseo-gu, Busan (46706)
+          </div>
+        </div>
+
+        <div>
+          <div class="text-sm font-black uppercase tracking-widest mb-4">About Us</div>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li><a class="hover:text-white" href="#">Greetings</a></li>
+            <li><a class="hover:text-white" href="#">History</a></li>
+            <li><a class="hover:text-white" href="#">Share Solution Safety</a></li>
+            <li><a class="hover:text-white" href="#">Certification</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-black uppercase tracking-widest mb-4">Products</div>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li><a class="hover:text-white" href="#products">Baby Care</a></li>
+            <li><a class="hover:text-white" href="#products">Bath Supplies</a></li>
+            <li><a class="hover:text-white" href="#products">Skin Care</a></li>
+            <li><a class="hover:text-white" href="#products">Other Protective items</a></li>
+            <li><a class="hover:text-white" href="#products">Veterinary Instrument</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="text-sm font-black uppercase tracking-widest mb-4">Community</div>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li><a class="hover:text-white" href="#">Notice</a></li>
+            <li><a class="hover:text-white" href="#">Inquiry</a></li>
+            <li><a class="hover:text-white" href="#">Directions</a></li>
+          </ul>
+
+          <div class="mt-6 flex gap-3">
+            <a class="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20" href="#" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a class="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20" href="#" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a class="size-10 rounded-full bg-white/10 grid place-items-center hover:bg-white/20" href="#" aria-label="YouTube">
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-5 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
+      <div>© 2024 The COS Korea / ATOMONDE.</div>
+      <div class="flex gap-4">
+        <a class="hover:text-white/80" href="#">Privacy</a>
+        <a class="hover:text-white/80" href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- scroll top ----------
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (!scrollTopBtn) return;
+      scrollTopBtn.classList.toggle('hidden', window.scrollY < 350);
     });
-});
+    scrollTopBtn?.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-// Video modal functionality
-const videoModal = document.getElementById('videoModal');
-const playVideoBtn = document.getElementById('playVideoBtn');
-const closeVideoBtn = document.getElementById('closeVideoBtn');
-
-if (playVideoBtn) {
-    playVideoBtn.addEventListener('click', () => {
-        videoModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-if (closeVideoBtn) {
-    closeVideoBtn.addEventListener('click', () => {
-        videoModal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-    });
-}
-
-// Close modal when clicking outside
-videoModal.addEventListener('click', (e) => {
-    if (e.target === videoModal) {
-        videoModal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+    // ---------- video modal ----------
+    const videoModal = document.getElementById('videoModal');
+    const playVideoBtn = document.getElementById('playVideoBtn');
+    const closeVideoBtn = document.getElementById('closeVideoBtn');
+    function closeModal(){
+      videoModal?.classList.add('hidden');
+      document.body.style.overflow='auto';
     }
-});
+    playVideoBtn?.addEventListener('click', () => {
+      videoModal?.classList.remove('hidden');
+      document.body.style.overflow='hidden';
+    });
+    closeVideoBtn?.addEventListener('click', closeModal);
+    videoModal?.addEventListener('click', (e) => { if (e.target === videoModal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && videoModal && !videoModal.classList.contains('hidden')) closeModal(); });
 
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !videoModal.classList.contains('hidden')) {
-        videoModal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+    // ---------- smooth scroll ----------
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // ---------- ripple ----------
+    function addRippleEffect(){
+      const buttons = document.querySelectorAll('button, a[role="button"], a');
+      buttons.forEach((el)=>{
+        el.style.position ||= 'relative';
+        el.style.overflow = 'hidden';
+        el.addEventListener('click', function(e){
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size/2;
+          const y = e.clientY - rect.top - size/2;
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+          const old = this.querySelector('.ripple');
+          if (old) old.remove();
+          this.appendChild(ripple);
+          ripple.addEventListener('animationend', ()=>ripple.remove());
+        }, {passive:true});
+      });
     }
-});
 
-// Add ripple effect to buttons
-function addRippleEffect() {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (e.target === this || e.target.closest('button') === this) {
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-            }
+    // consult button
+    document.getElementById('consultBtn')?.addEventListener('click', ()=>{
+      document.querySelector('#consult')?.scrollIntoView({behavior:'smooth'});
+    });
+
+    // ---------- Tabs: form/direct ----------
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = {
+      form: document.getElementById('tab-form'),
+      direct: document.getElementById('tab-direct')
+    };
+    function setTab(name){
+      tabBtns.forEach(b=>{
+        const on = b.dataset.tab === name;
+        b.classList.toggle('text-white', on);
+        b.classList.toggle('brand-gradient', on);
+        b.classList.toggle('text-[var(--dark)]', !on);
+      });
+      Object.keys(tabPanels).forEach(k=>{
+        tabPanels[k]?.classList.toggle('hidden', k !== name);
+      });
+    }
+    tabBtns.forEach(b=> b.addEventListener('click', ()=> setTab(b.dataset.tab)));
+    setTab('form');
+
+    // submit: reset only
+    document.getElementById('consultForm')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      e.target.reset();
+    });
+
+    // ---------- Product filter ----------
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.product-card');
+    filterBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const key = btn.dataset.filter;
+        filterBtns.forEach(b=>b.classList.remove('brand-gradient','text-white'));
+        btn.classList.add('brand-gradient','text-white');
+
+        cards.forEach(card=>{
+          const cat = card.getAttribute('data-category') || '';
+          const ok = (key === 'all') || (key === 'Newest' ? cat.includes('Newest') : cat.includes(key));
+          card.classList.toggle('hidden', !ok);
         });
+      });
     });
-}
 
-// Initialize effects when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    addRippleEffect();
-    
-    // Add fade-in effect to elements
-    const elements = document.querySelectorAll('.glass-card, [class*="animate-"]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    elements.forEach(el => observer.observe(el));
-});
+    // ---------- Promo countdown ----------
+    const now = new Date();
+    const end = new Date(now.getTime() + 10*24*60*60*1000);
+    end.setHours(23,59,59,999);
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            document.querySelector(href).scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
+    const dd = document.getElementById('dd');
+    const hh = document.getElementById('hh');
+    const mm = document.getElementById('mm');
+    const ss = document.getElementById('ss');
+
+    function pad(n){ return String(n).padStart(2,'0'); }
+    function tick(){
+      const t = end.getTime() - Date.now();
+      if (t <= 0){
+        dd.textContent = '00'; hh.textContent = '00'; mm.textContent = '00'; ss.textContent = '00';
+        return;
+      }
+      const days = Math.floor(t / (24*60*60*1000));
+      const hours = Math.floor((t % (24*60*60*1000)) / (60*60*1000));
+      const mins = Math.floor((t % (60*60*1000)) / (60*1000));
+      const secs = Math.floor((t % (60*1000)) / 1000);
+      dd.textContent = pad(days);
+      hh.textContent = pad(hours);
+      mm.textContent = pad(mins);
+      ss.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ---------- Language toggle EN/KR/VI ----------
+    const i18n = {
+      en: {
+        video_title: "Care Routine",
+        nav_about:"About", nav_why:"Why Us", nav_proof:"Proof", nav_products:"Products", nav_reviews:"Reviews", nav_consult:"Consult", nav_faq:"FAQ",
+        cta_consult:"Get Consultation",
+        hero_badge:"Skincare for the whole family",
+        hero_h1a:"Natural care,", hero_h1b:"built for daily use",
+        hero_p:"Developed by The COS Korea, ATOMONDE focuses on gentle daily routines, comfortable textures, and family-friendly assortment from head to toe.",
+        cta_view_products:"View products",
+        cta_watch_routine:"Watch routine",
+        stat_1_a:"Family", stat_1_b:"head-to-toe",
+        stat_2_a:"Daily", stat_2_b:"routine-first",
+        stat_3_a:"KR", stat_3_b:"brand origin",
+        promo_tag:"Spring promo",
+        promo_title:"New season, routine refresh",
+        promo_sub:"Limited-time offer ends soon.",
+        promo_btn:"Get offer",
+        t_days:"Days", t_hours:"Hours", t_mins:"Mins", t_secs:"Secs",
+
+        about_tag:"brand story",
+        about_title:"ATOMONDE — family routine skincare",
+        about_p:"ATOMONDE is designed as a comfort-first daily routine. The assortment covers baby, kids, and adults with head-to-toe options, developed under The COS Korea’s “natural, unspoiled skin” philosophy.",
+        about_box1_title:"Designed for daily use",
+        about_box1_a:"• gentle routine-driven lineup",
+        about_box1_b:"• light, comfortable textures",
+        about_box1_c:"• consistent family assortment",
+        about_box2_title:"Brand values",
+        about_box2_a:"• good people, good product",
+        about_box2_b:"• customer-first responsiveness",
+        about_box2_c:"• long-term routine mindset",
+        about2_tag:"what to expect",
+        about2_title:"What you get on this page",
+        about2_p1:"• A clean product catalog that feels premium and easy to browse.",
+        about2_p2:"• Proof section (certifications + KR patents) with clear naming under each item.",
+        about2_p3:"• Consultation area with two modes: form or direct contact + map.",
+
+        why_tag:"why choose us",
+        why_title:"Why The COS Korea",
+        why_p:"We focus on a routine-first lineup, evidence-forward communication, and partnership readiness—so customers feel confident and distributors can scale reliably.",
+        why_1_t:"Routine-first assortment",
+        why_1_p:"Head-to-toe options across baby, kids, and adults make routine building simple and consistent.",
+        why_2_t:"Evidence-forward trust",
+        why_2_p:"Clear proof items (certifications + patents) displayed with names, so trust is fast and verifiable.",
+        why_3_t:"Partnership readiness",
+        why_3_p:"OEM & ODM-friendly formats and scalable SKUs—ready for distribution and business collaboration.",
+
+        cert_tag:"proof",
+        cert_title:"Certifications & Patents",
+        cert_p:"",
+        cert_01_t:"Awards From Busan City — “Successful Start-ups”",
+        cert_02_t:"Busan City Million Club — “Representative Start-up Company”",
+        cert_03_t:"Best Product Of This Month (Nov 2018) — “Derma Stick Balm”",
+        cert_04_t:"Business Partnership Agreement — Silla University",
+        cert_05_t:"Awards From MOEL — Development Of Cosmetics Industry & Job Creation",
+        cert_06_t:"Awards From Busan City — Revitalization Of The Local Economy",
+        cert_07_t:"Awards From MOTIE — Successful Hosting Of Korea Sale Festa",
+        cert_08_t:"Business Partnership Agreement — Daegu Haany University",
+        cert_09_t:"CEO Oh — Appointment Of Daegu Haany University IC Center Director",
+        cert_10_t:"Kr Patent No. 10-1379460",
+        cert_11_t:"Kr Patent No. 10-2732125",
+
+        prod_tag:"products (14)",
+        prod_title:"Explore the assortment",
+        prod_p:"Browse categories. Each card stays aligned with consistent height and unified actions.",
+        f_all:"All", f_new:"Newest",
+        badge_new:"Newest",
+        btn_details:"Details",
+        btn_consult:"Consult",
+
+        p01_t:"Seaweed Kids Shampoo · Conditioner · Bodywash",
+        p01_d:"All-in-one daily cleansing routine. 1000ml. OEM&ODM friendly.",
+        p02_t:"Derma Hair Gel 160g",
+        p02_d:"Natural-looking styling feel for baby & kids. Clean finish. OEM&ODM.",
+        p03_t:"Derma Lotion 200g",
+        p03_d:"Daily moisturizing emulsion for face & body routine, balanced and comfortable.",
+        p04_t:"Derma Cream 200g",
+        p04_d:"Deep moisture support for daily face & body care, with rich yet wearable feel.",
+        p05_t:"Phyton Stick Balm 16.5g",
+        p05_d:"Stick format for on-the-go routine on dryness-prone areas.",
+        p06_t:"Kids & Daddy Hygiene Cleanser (Men)",
+        p06_d:"Daily hygiene cleanser designed for comfort and freshness in routine use.",
+        p07_t:"Derma Bath & Shampoo 300g",
+        p07_d:"Top-to-toe wash for simplified routines. Comfortable daily cleansing.",
+        p08_t:"Kids & Moms Feminine Cleanser 400g",
+        p08_d:"Gentle intimate wash option built for routine comfort and freshness.",
+        p09_t:"Face Wash Foam 100g (Junior)",
+        p09_d:"Mild cleansing step with a comfortable finish for daily face routine.",
+        p10_t:"2-in-1 Scalp Cooling Shampoo + Conditioner 500ml",
+        p10_d:"Refreshing daily hair routine. Convenient all-in-one format. OEM&ODM.",
+        p11_t:"A.Penguin Calming Kids Lotion 200g",
+        p11_d:"Light daily moisturizer for face & body routine with a calm finish.",
+        p12_t:"A.Penguin Kids Water Cream 200g",
+        p12_d:"Weightless hydration style that layers well in everyday routines.",
+        p13_t:"A Dog of Flanders Set (Pet Care)",
+        p13_d:"Pet shampoo + silky detangler mist set for routine grooming.",
+        p14_t:"A.Penguin Hot Pack 100g",
+        p14_d:"Air-activated hand warmers for seasonal comfort. OEM&ODM.",
+
+        rev_tag:"voice of customers",
+        rev_title:"What customers say",
+        rev_p:"Short, experience-based comments (kept neutral and routine-focused).",
+        rev_1:"“The texture feels comfortable and easy to use every day. The routine is simple and the finish is clean.”",
+        rev_1_n:"Minji K.", rev_1_r:"Family routine buyer",
+        rev_2:"“I like that there are multiple categories (wash, lotion, cream) so we can build a consistent routine.”",
+        rev_2_n:"Daniel H.", rev_2_r:"Office worker",
+        rev_3:"“Packaging looks premium and delivery was smooth. The products feel like a careful, routine-first brand.”",
+        rev_3_n:"Soojin P.", rev_3_r:"Home care enthusiast",
+
+        con_tag:"consult",
+        con_title:"Get consultation by needs",
+        con_p:"",
+        con_box1_t:"You’ll receive",
+        con_box1_a:"• routine suggestions by category",
+        con_box1_b:"• recommended SKUs to start with",
+        con_box1_c:"• basic how-to-use guidance",
+        contact_title:"Contact",
+        tab_form:"Form", tab_direct:"Direct",
+        lab_name:"Full name", lab_phone:"Phone", lab_need:"Need", lab_note:"Message",
+        ph_msg:"Tell us your preferred category and product type...",
+        btn_submit:"Send request",
+        link_web:"Website", link_social:"Social",
+
+        faq_tag:"faq",
+        faq_title:"Quick answers",
+        faq_q1:"How do I choose the right product category?",
+        faq_a1:"Start with your routine step: wash/cleanse → moisturize (lotion/cream). Then select the category (baby, skin care, bath supplies).",
+        faq_q2:"Where can I see certifications and patents?",
+        faq_a2:"Go to the Proof section. Each item is displayed with its name and image (fit mode, not cropped).",
+        faq_q3:"Can I contact directly instead of filling the form?",
+        faq_a3:"Yes. In the Consult section, switch to the Direct tab to see contact details and the map.",
+        faq_q4:"Do “Details” links work now?",
+        faq_a4:"Replace LINK_PRODUCT_01 … LINK_PRODUCT_14 with your real product URLs later.",
+        faq_cta_tag:"next",
+        faq_cta_title:"Want to receive more benefits?",
+        faq_cta_p:"",
+        faq_cta_btn1:"View proof",
+        faq_cta_btn2:"Get consultation",
+      },
+
+      kr: {
+        video_title:"관리 루틴",
+        nav_about:"브랜드", nav_why:"선택 이유", nav_proof:"근거", nav_products:"제품", nav_reviews:"후기", nav_consult:"상담", nav_faq:"FAQ",
+        cta_consult:"상담 받기",
+        hero_badge:"가족을 위한 스킨케어",
+        hero_h1a:"자연스럽게,", hero_h1b:"매일 쓰기 좋은 루틴",
+        hero_p:"The COS Korea가 개발한 ATOMONDE는 매일 편안하게 사용할 수 있는 루틴 중심의 제품 라인업을 제공합니다.",
+        cta_view_products:"제품 보기",
+        cta_watch_routine:"루틴 보기",
+        stat_1_a:"가족", stat_1_b:"헤드-투-토",
+        stat_2_a:"매일", stat_2_b:"루틴 중심",
+        stat_3_a:"KR", stat_3_b:"한국 브랜드",
+        promo_tag:"봄 프로모션",
+        promo_title:"새 시즌 루틴 리프레시",
+        promo_sub:"기간 한정 혜택이 곧 종료됩니다.",
+        promo_btn:"혜택 받기",
+        t_days:"일", t_hours:"시간", t_mins:"분", t_secs:"초",
+
+        about_tag:"브랜드 스토리",
+        about_title:"ATOMONDE — 가족 루틴 스킨케어",
+        about_p:"ATOMONDE는 매일 편안하게 사용할 수 있도록 설계된 루틴 중심 스킨케어입니다. 아기부터 성인까지 헤드-투-토 라인업을 제공합니다.",
+        about_box1_title:"일상 사용 중심",
+        about_box1_a:"• 루틴 기반 라인업",
+        about_box1_b:"• 가볍고 편안한 텍스처",
+        about_box1_c:"• 가족 라인업 구성",
+        about_box2_title:"브랜드 가치",
+        about_box2_a:"• 좋은 사람, 좋은 제품",
+        about_box2_b:"• 고객 중심 대응",
+        about_box2_c:"• 장기 루틴 관점",
+        about2_tag:"페이지 구성",
+        about2_title:"이 페이지에서 제공하는 것",
+        about2_p1:"• 프리미엄 느낌의 제품 카탈로그",
+        about2_p2:"• 근거 섹션(인증/특허) + 명칭 표시",
+        about2_p3:"• 상담: 폼 또는 직접 연락 + 지도",
+
+        why_tag:"선택 이유",
+        why_title:"Why The COS Korea",
+        why_p:"루틴 중심의 실용적인 스킨케어 경험을 제공합니다. 근거 기반 신뢰 요소를 중요하게 봅니다.",
+        why_1_t:"루틴 중심 라인업",
+        why_1_p:"아기부터 성인까지 헤드-투-토 구성으로 루틴 설계가 쉽습니다.",
+        why_2_t:"근거 기반 신뢰",
+        why_2_p:"인증/특허를 명칭과 함께 보여주어 신뢰를 빠르게 전달합니다.",
+        why_3_t:"파트너십 준비",
+        why_3_p:"OEM & ODM 친화 포맷과 확장 가능한 SKU로 협업에 적합합니다.",
+
+        cert_tag:"근거",
+        cert_title:"인증 및 특허",
+        cert_p:"",
+        cert_01_t:"부산시 수상 — “성공 창업”",
+        cert_02_t:"부산시 밀리언클럽 — “대표 창업 기업”",
+        cert_03_t:"이달의 베스트(2018년 11월) — “더마 스틱 밤”",
+        cert_04_t:"업무 협약 — 신라대학교",
+        cert_05_t:"고용노동부 수상 — 화장품 산업 발전 및 일자리 창출",
+        cert_06_t:"부산시 수상 — 지역경제 활성화",
+        cert_07_t:"산업통상자원부 수상 — 코리아 세일 페스타 성공 개최",
+        cert_08_t:"업무 협약 — 대구한의대학교",
+        cert_09_t:"오상태 CEO — 대구한의대 IC센터장 위촉",
+        cert_10_t:"KR 특허 10-1379460",
+        cert_11_t:"KR 특허 10-2732125",
+
+        prod_tag:"제품 (14)",
+        prod_title:"제품 살펴보기",
+        prod_p:"카테고리별로 탐색하세요. 카드 높이와 버튼은 통일되어 정렬됩니다.",
+        f_all:"전체", f_new:"최신",
+        badge_new:"최신",
+        btn_details:"상세",
+        btn_consult:"상담",
+
+        p01_t:"해조류 키즈 샴푸·컨디셔너·바디워시",
+        p01_d:"올인원 데일리 클렌징. 1000ml. OEM&ODM.",
+        p02_t:"더마 헤어 젤 160g",
+        p02_d:"아기·키즈용 자연스러운 스타일링. OEM&ODM.",
+        p03_t:"더마 로션 200g",
+        p03_d:"페이스&바디 데일리 보습 에멀전.",
+        p04_t:"더마 크림 200g",
+        p04_d:"데일리 루틴용 딥 모이스처 케어.",
+        p05_t:"피톤 스틱 밤 16.5g",
+        p05_d:"휴대용 스틱 포맷, 데일리 케어에 적합.",
+        p06_t:"키즈&대디 위생 클렌저(남성)",
+        p06_d:"편안한 사용감을 고려한 데일리 위생 클렌저.",
+        p07_t:"더마 배스&샴푸 300g",
+        p07_d:"헤드-투-토 올인원 워시.",
+        p08_t:"키즈&맘 여성 청결제 400g",
+        p08_d:"루틴 사용을 고려한 젠틀 포뮬라.",
+        p09_t:"페이스 워시 폼 100g(주니어)",
+        p09_d:"데일리 페이스 루틴용 마일드 클렌저.",
+        p10_t:"두피 쿨링 샴푸+컨디셔너 500ml",
+        p10_d:"상쾌한 데일리 헤어 루틴. OEM&ODM.",
+        p11_t:"A.펭귄 카밍 키즈 로션 200g",
+        p11_d:"페이스&바디 데일리 보습 로션.",
+        p12_t:"A.펭귄 키즈 워터 크림 200g",
+        p12_d:"가볍게 레이어링 가능한 수분 크림.",
+        p13_t:"플랜더스 강아지 세트(펫 케어)",
+        p13_d:"펫 샴푸 + 디탱글러 미스트 세트.",
+        p14_t:"A.펭귄 핫팩 100g",
+        p14_d:"시즌용 에어 액티베이티드 핸드 워머. OEM&ODM.",
+
+        rev_tag:"고객 후기",
+        rev_title:"고객이 말하는 ATOMONDE",
+        rev_p:"루틴 중심의 중립적인 경험 기반 코멘트.",
+        rev_1:"“매일 쓰기 편하고 사용감이 좋아요. 루틴이 간단해집니다.”",
+        rev_1_n:"민지 K.", rev_1_r:"가족 루틴 구매자",
+        rev_2:"“워시, 로션, 크림 등 카테고리가 다양해서 루틴 구성이 쉬워요.”",
+        rev_2_n:"다니엘 H.", rev_2_r:"직장인",
+        rev_3:"“패키징이 고급스럽고 전반적으로 루틴 중심 브랜드 느낌이 좋아요.”",
+        rev_3_n:"수진 P.", rev_3_r:"홈케어 사용자",
+
+        con_tag:"상담",
+        con_title:"니즈 기반 상담",
+        con_p:"",
+        con_box1_t:"제공 내용",
+        con_box1_a:"• 카테고리별 루틴 제안",
+        con_box1_b:"• 시작용 SKU 추천",
+        con_box1_c:"• 기본 사용 가이드",
+        contact_title:"연락처",
+        tab_form:"폼", tab_direct:"직접",
+        lab_name:"이름", lab_phone:"전화", lab_need:"니즈", lab_note:"메시지",
+        ph_msg:"원하는 카테고리/제품 타입을 적어주세요...",
+        btn_submit:"요청 보내기",
+        link_web:"웹사이트", link_social:"소셜",
+
+        faq_tag:"faq",
+        faq_title:"자주 묻는 질문",
+        faq_q1:"제품 카테고리는 어떻게 고르나요?",
+        faq_a1:"루틴 단계(클렌징 → 보습)부터 정한 뒤, 목적에 맞는 카테고리를 선택하세요.",
+        faq_q2:"인증/특허는 어디서 보나요?",
+        faq_a2:"Proof 섹션에서 확인합니다. 이미지가 잘리지 않고 fit으로 표시됩니다.",
+        faq_q3:"폼 대신 직접 연락해도 되나요?",
+        faq_a3:"가능합니다. Consult 섹션의 Direct 탭에서 연락처와 지도를 확인하세요.",
+        faq_q4:"Details 링크는 지금 작동하나요?",
+        faq_a4:"LINK_PRODUCT_01~14를 실제 URL로 교체하면 됩니다.",
+        faq_cta_tag:"다음 단계",
+        faq_cta_title:"더 프리미엄하게 만들고 싶나요?",
+        faq_cta_p:"",
+        faq_cta_btn1:"근거 보기",
+        faq_cta_btn2:"상담 받기",
+      },
+
+      vi: {
+        video_title:"Quy trình chăm sóc",
+        nav_about:"Giới thiệu", nav_why:"Vì sao chọn", nav_proof:"Chứng nhận", nav_products:"Sản phẩm", nav_reviews:"Đánh giá", nav_consult:"Tư vấn", nav_faq:"FAQ",
+        cta_consult:"Nhận tư vấn",
+        hero_badge:"Chăm sóc da cho cả gia đình",
+        hero_h1a:"Chăm sóc dịu nhẹ,", hero_h1b:"dành cho dùng hằng ngày",
+        hero_p:"ATOMONDE (The COS Korea) tập trung vào thói quen chăm sóc hằng ngày, kết cấu dễ chịu, danh mục phù hợp cho gia đình từ đầu đến chân.",
+        cta_view_products:"Xem sản phẩm",
+        cta_watch_routine:"Xem quy trình",
+        stat_1_a:"Gia đình", stat_1_b:"từ đầu đến chân",
+        stat_2_a:"Hằng ngày", stat_2_b:"ưu tiên thói quen",
+        stat_3_a:"KR", stat_3_b:"nguồn gốc Hàn Quốc",
+        promo_tag:"Ưu đãi theo mùa",
+        promo_title:"Làm mới thói quen chăm sóc",
+        promo_sub:"Ưu đãi giới hạn thời gian.",
+        promo_btn:"Nhận ưu đãi",
+        t_days:"Ngày", t_hours:"Giờ", t_mins:"Phút", t_secs:"Giây",
+
+        about_tag:"câu chuyện thương hiệu",
+        about_title:"ATOMONDE — chăm sóc da theo thói quen cho gia đình",
+        about_p:"ATOMONDE được thiết kế theo hướng ưu tiên cảm giác dễ chịu khi dùng hằng ngày. Danh mục bao phủ baby, kids, adults với lựa chọn từ đầu đến chân.",
+        about_box1_title:"Thiết kế cho dùng hằng ngày",
+        about_box1_a:"• danh mục theo thói quen",
+        about_box1_b:"• kết cấu nhẹ, dễ chịu",
+        about_box1_c:"• đồng bộ trong gia đình",
+        about_box2_title:"Giá trị thương hiệu",
+        about_box2_a:"• good people, good product",
+        about_box2_b:"• ưu tiên trải nghiệm khách hàng",
+        about_box2_c:"• tư duy thói quen dài hạn",
+        about2_tag:"nội dung trang",
+        about2_title:"Bạn sẽ thấy gì trên trang này",
+        about2_p1:"• danh mục sản phẩm rõ ràng, cảm giác premium",
+        about2_p2:"• phần chứng nhận & bằng sáng chế hiển thị minh bạch",
+        about2_p3:"• khu vực tư vấn: form hoặc liên hệ trực tiếp + bản đồ",
+
+        why_tag:"vì sao chọn",
+        why_title:"Vì sao chọn The COS Korea",
+        why_p:"Tập trung vào danh mục theo thói quen, truyền thông dựa trên bằng chứng, sẵn sàng hợp tác phân phối.",
+        why_1_t:"Danh mục theo thói quen",
+        why_1_p:"Từ baby đến người lớn, dễ xây dựng routine nhất quán.",
+        why_2_t:"Niềm tin dựa trên bằng chứng",
+        why_2_p:"Chứng nhận/bằng sáng chế hiển thị rõ ràng kèm tên gọi.",
+        why_3_t:"Sẵn sàng hợp tác",
+        why_3_p:"Định dạng OEM & ODM và danh mục dễ mở rộng cho phân phối.",
+
+        cert_tag:"chứng minh",
+        cert_title:"Chứng Nhận & Bằng Sáng Chế",
+        cert_p:"",
+        cert_01_t:"Giải Thưởng Từ Thành Phố Busan — “Successful Start-ups”",
+        cert_02_t:"Busan City Million Club — “Representative Start-up Company”",
+        cert_03_t:"Best Product Of This Month (Nov 2018) — “Derma Stick Balm”",
+        cert_04_t:"Business Partnership Agreement — Silla University",
+        cert_05_t:"Giải Thưởng Từ MOEL — Development Of Cosmetics Industry & Job Creation",
+        cert_06_t:"Giải Thưởng Từ Thành Phố Busan — Revitalization Of The Local Economy",
+        cert_07_t:"Giải Thưởng Từ MOTIE — Successful Hosting Of Korea Sale Festa",
+        cert_08_t:"Business Partnership Agreement — Daegu Haany University",
+        cert_09_t:"CEO Oh — Appointment Of Daegu Haany University IC Center Director",
+        cert_10_t:"Kr Patent No. 10-1379460",
+        cert_11_t:"Kr Patent No. 10-2732125",
+
+        prod_tag:"sản phẩm (14)",
+        prod_title:"Khám phá danh mục",
+        prod_p:"Duyệt theo nhóm. Mỗi thẻ được căn đều chiều cao và đồng bộ nút hành động.",
+        f_all:"Tất cả", f_new:"Mới nhất",
+        badge_new:"Mới",
+        btn_details:"Chi tiết",
+        btn_consult:"Tư vấn",
+
+        p01_t:"Seaweed Kids Shampoo · Conditioner · Bodywash",
+        p01_d:"Sạch nhanh theo thói quen hằng ngày. 1000ml. Hỗ trợ OEM&ODM.",
+        p02_t:"Derma Hair Gel 160g",
+        p02_d:"Tạo kiểu tự nhiên cho baby & kids. Hỗ trợ OEM&ODM.",
+        p03_t:"Derma Lotion 200g",
+        p03_d:"Dưỡng ẩm hằng ngày cho mặt & body, cảm giác cân bằng.",
+        p04_t:"Derma Cream 200g",
+        p04_d:"Tăng cường ẩm cho routine mặt & body, kết cấu dễ dùng.",
+        p05_t:"Phyton Stick Balm 16.5g",
+        p05_d:"Dạng thỏi tiện mang theo cho vùng da dễ khô.",
+        p06_t:"Kids & Daddy Hygiene Cleanser (Men)",
+        p06_d:"Sản phẩm vệ sinh hằng ngày hướng tới cảm giác thoải mái.",
+        p07_t:"Derma Bath & Shampoo 300g",
+        p07_d:"Tắm gội all-in-one, tối giản routine.",
+        p08_t:"Kids & Moms Feminine Cleanser 400g",
+        p08_d:"Sản phẩm vệ sinh dịu nhẹ cho routine thoải mái.",
+        p09_t:"Face Wash Foam 100g (Junior)",
+        p09_d:"Làm sạch dịu nhẹ cho routine rửa mặt mỗi ngày.",
+        p10_t:"2-in-1 Scalp Cooling Shampoo + Conditioner 500ml",
+        p10_d:"Cảm giác mát da đầu, tiện lợi 2-in-1. Hỗ trợ OEM&ODM.",
+        p11_t:"A.Penguin Calming Kids Lotion 200g",
+        p11_d:"Lotion nhẹ cho routine dưỡng ẩm mặt & body.",
+        p12_t:"A.Penguin Kids Water Cream 200g",
+        p12_d:"Dưỡng ẩm mỏng nhẹ, dễ layer trong routine.",
+        p13_t:"A Dog of Flanders Set (Pet Care)",
+        p13_d:"Bộ pet shampoo + mist gỡ rối, tiện cho grooming routine.",
+        p14_t:"A.Penguin Hot Pack 100g",
+        p14_d:"Túi sưởi tay kích hoạt bằng không khí. Hỗ trợ OEM&ODM.",
+
+        rev_tag:"đánh giá",
+        rev_title:"Khách hàng nói gì",
+        rev_p:"Trích đoạn ngắn, thiên về trải nghiệm dùng theo thói quen.",
+        rev_1:"“Kết cấu dễ chịu, dùng hằng ngày ổn. Routine đơn giản và cảm giác sạch.”",
+        rev_1_n:"Minji K.", rev_1_r:"Người mua cho gia đình",
+        rev_2:"“Nhiều nhóm sản phẩm nên mình dễ xây routine nhất quán.”",
+        rev_2_n:"Daniel H.", rev_2_r:"Nhân viên văn phòng",
+        rev_3:"“Bao bì trông premium, giao hàng ổn. Cảm giác đúng kiểu thương hiệu routine-first.”",
+        rev_3_n:"Soojin P.", rev_3_r:"Người dùng home care",
+
+        con_tag:"tư vấn",
+        con_title:"Nhận tư vấn theo nhu cầu",
+        con_p:"",
+        con_box1_t:"Bạn sẽ nhận được",
+        con_box1_a:"• gợi ý routine theo nhóm",
+        con_box1_b:"• SKU nên bắt đầu",
+        con_box1_c:"• hướng dẫn dùng cơ bản",
+        contact_title:"Liên hệ",
+        tab_form:"Form", tab_direct:"Trực tiếp",
+        lab_name:"Họ và tên", lab_phone:"Số điện thoại", lab_need:"Nhu cầu", lab_note:"Nội dung",
+        ph_msg:"Mô tả nhóm sản phẩm bạn quan tâm...",
+        btn_submit:"Gửi yêu cầu",
+        link_web:"Website", link_social:"Mạng xã hội",
+
+        faq_tag:"faq",
+        faq_title:"Câu hỏi thường gặp",
+        faq_q1:"Chọn nhóm sản phẩm như thế nào?",
+        faq_a1:"Bắt đầu từ bước trong routine: làm sạch → dưỡng ẩm, sau đó chọn nhóm phù hợp (baby, skin care, bath supplies).",
+        faq_q2:"Xem chứng nhận và bằng sáng chế ở đâu?",
+        faq_a2:"Ở phần Chứng nhận. Mỗi mục có tên và ảnh hiển thị theo kiểu fit (không bị cắt).",
+        faq_q3:"Có thể liên hệ trực tiếp thay vì điền form không?",
+        faq_a3:"Có. Trong phần Tư vấn, chuyển sang tab Trực tiếp để xem thông tin và bản đồ.",
+        faq_q4:"Link “Chi tiết” đã dùng được chưa?",
+        faq_a4:"Bạn chỉ cần thay LINK_PRODUCT_01…14 bằng URL thật của từng sản phẩm.",
+        faq_cta_tag:"tiếp theo",
+        faq_cta_title:"Muốn nhận được nhiều ưu đãi hơn?",
+        faq_cta_p:"",
+        faq_cta_btn1:"Xem chứng nhận",
+        faq_cta_btn2:"Nhận tư vấn",
+      }
+    };
+
+    function applyLang(lang){
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang] && i18n[lang][key] != null) el.textContent = i18n[lang][key];
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+        const key = el.getAttribute('data-i18n-ph');
+        if (i18n[lang] && i18n[lang][key] != null) el.setAttribute('placeholder', i18n[lang][key]);
+      });
+
+      const enBtn = document.getElementById('langEN');
+      const krBtn = document.getElementById('langKR');
+      const viBtn = document.getElementById('langVI');
+
+      const setActive = (btn, on) => {
+        btn.classList.toggle('brand-gradient', on);
+        btn.classList.toggle('text-white', on);
+        btn.classList.toggle('text-[var(--dark)]', !on);
+      };
+
+      setActive(enBtn, lang === 'en');
+      setActive(krBtn, lang === 'kr');
+      setActive(viBtn, lang === 'vi');
+
+      document.documentElement.lang = (lang === 'kr') ? 'ko' : (lang === 'vi' ? 'vi' : 'en');
+    }
+
+    document.getElementById('langEN')?.addEventListener('click', ()=>applyLang('en'));
+    document.getElementById('langKR')?.addEventListener('click', ()=>applyLang('kr'));
+    document.getElementById('langVI')?.addEventListener('click', ()=>applyLang('vi'));
+
+    document.addEventListener('DOMContentLoaded', () => {
+      addRippleEffect();
+      applyLang('en');
     });
-});
-
-// Add hover animation to feature cards
-const cards = document.querySelectorAll('.glass-card');
-cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-</script>
-
-</body></html>
+  </script>
+</body>
+</html>
